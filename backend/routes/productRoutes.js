@@ -15,6 +15,9 @@ router.get("", productController.getAllProducts);
 // Lấy một sản phẩm theo ID
 router.get("/:id", productController.getProductById);
 
+//lấy sản phẩm theo tên danh mục
+router.get("/category/:category", productController.getProductsByCategory);
+
 // Thêm một sản phẩm mới
 router.post(
   "",

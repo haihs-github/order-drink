@@ -248,8 +248,8 @@ html {
 
 .close-btn {
     position: absolute;
-    top: 2px;
-    right: -455px;
+    /* top: 2px; */
+    /* right: -455px; */
     border-radius: 50%;
     padding: 0 8px;
     cursor: pointer;

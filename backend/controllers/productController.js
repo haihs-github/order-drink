@@ -34,6 +34,25 @@ exports.getProductById = async (req, res) => {
   }
 };
 
+// Lấy sản phẩm theo danh mục
+exports.getProductsByCategory = async (req, res) => {
+  try {
+    const category = req.params.category;
+    // Tìm các sản phẩm có category_id trùng với id của category vừa tìm được
+    const products = await Product.find({ category_id: category, deleted: false })
+      .populate("category_id", "name"); // Lấy cả tên danh mục
+
+    if (!products || products.length === 0) {
+      return res.status(200).json({ message: "Không có sản phẩm nào trong danh mục này", products: [] }); // trả về 200 và mảng rỗng
+    }
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Lỗi khi lấy sản phẩm theo danh mục:", error);
+    res.status(500).json({ message: "Đã xảy ra lỗi khi lấy sản phẩm" });
+  }
+};
+
 // Thêm một sản phẩm mới
 exports.createProduct = [
   upload.single("thumbnail"), // Sử dụng middleware multer trước controller
@@ -122,9 +141,9 @@ exports.updateProduct = [
       // Nếu không có category trong req.body, giữ nguyên category cũ
       const categoryId = category
         ? (
-            (await Category.findOne({ name: category })) ||
-            (await new Category({ name: category }).save())
-          )._id
+          (await Category.findOne({ name: category })) ||
+          (await new Category({ name: category }).save())
+        )._id
         : existingProduct.category_id;
       const updatedProduct = await Product.findByIdAndUpdate(
         productId,
