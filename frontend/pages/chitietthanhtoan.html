@@ -53,7 +53,7 @@
         <div class="t5-body">
             <div class="checkout-container">
                 <!-- FORM BÊN TRÁI -->
-                <div class="checkout-form">
+                <form class="checkout-form">
                     <h2>Chi tiết thanh toán</h2>
                     <label for="name">Họ và tên *</label>
                     <input type="text" id="name" placeholder="Nhập tên của bạn...">
@@ -61,12 +61,15 @@
                     <label for="phone">Số điện thoại *</label>
                     <input type="text" id="phone" placeholder="Nhập số điện thoại...">
 
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="Nhập số điện thoại...">
+
                     <label for="address">Địa chỉ *</label>
                     <textarea id="address" rows="4" placeholder="Nhập địa chỉ giao hàng..."></textarea>
 
                     <label for="note">Ghi chú đơn hàng</label>
                     <textarea id="note" rows="3" placeholder="Ghi chú cho đơn hàng..."></textarea>
-                </div>
+                </form>
 
                 <!-- ĐƠN HÀNG BÊN PHẢI -->
                 <div class="order-summary">
@@ -82,7 +85,7 @@
                         <p><strong>Tổng thanh toán</strong> <strong>0 VNĐ</strong></p>
                     </div>
                     <div class="checkout-actions">
-                        <button class="btn-confirm-order">Xác nhận đặt hàng</button>
+                        <button type="submit" class="btn-confirm-order">Xác nhận đặt hàng</button>
                         <button class="btn-cancel-order">Hủy đặt hàng</button>
                     </div>
 
@@ -184,9 +187,6 @@
                                 Trà Sữa ToCoToCo Hàng Bông
 
                             </li>
-
-
-
                         </ul>
                     </div>
                 </div>
@@ -224,7 +224,6 @@
 
 
     <!-- java -->
-    <script src="../controller/trangchu.js"></script>
     <script src="../controller/chitietthanhtoan.js"></script>
 </body>
 

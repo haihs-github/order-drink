@@ -27,7 +27,7 @@ const OrderDetailSchema = new Schema({
 		required: true,
 		min: 0,
 	}
-}, { collection: 'ORDER_DETAIL' }); // Đặt tên collection là "ORDER_DETAIL"
+});
 
 
 const OrderDetail = mongoose.model('OrderDetail', OrderDetailSchema);

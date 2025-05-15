@@ -46,35 +46,8 @@ const OrderSchema = new Schema({
 	money: {
 		type: Number,
 		required: true,
+		default: 0,
 		min: 0,
-	}
-}, {
-	collection: 'ODERS',
-	// Virtual field để tính tổng tiền từ các order detail
-	toJSON: { virtuals: true },
-	toObject: { virtuals: true }
-});
-
-// Virtual field để tính tổng tiền từ các order detail
-OrderSchema.virtual('total_money', {
-	ref: 'OrderDetail', // Tham chiếu đến model OrderDetail
-	localField: '_id', // Trường nào trong Order model liên kết với OrderDetail (ở đây là _id)
-	foreignField: 'order_id', // Trường nào trong OrderDetail model liên kết với Order (ở đây là order_id)
-	justOne: false, // Có nhiều OrderDetail cho một Order
-});
-
-// Trước khi lưu một Order, tính toán và gán giá trị cho trường money
-OrderSchema.pre('save', async function (next) {
-	try {
-		await this.populate('total_money'); // Lấy các order detail liên quan
-		let total = 0;
-		this.total_money.forEach(detail => {
-			total += detail.money;
-		});
-		this.money = total; // Gán tổng tiền vào trường money của Order
-		next();
-	} catch (err) {
-		next(err);
 	}
 });
 

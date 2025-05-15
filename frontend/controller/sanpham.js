@@ -230,8 +230,6 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 						updateTotal();
 
 						detailOverlay.style.display = "flex";
-						detailOverlay.style.top = "0px";
-						detailOverlay.style.right = "0px";
 					});
 				});
 			}
@@ -419,7 +417,6 @@ if (addToCartBtn) {
 			.trim();
 		const price = parseInt(rawPrice) || 0;
 		const quantity = parseInt(quantityInput.value);
-
 		const drinkType = document.querySelector("#drink-type").value;
 		const sugarLevel = document.querySelector("#sugar-level").value;
 
