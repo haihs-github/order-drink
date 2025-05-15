@@ -1,0 +1,418 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* common */
+html{
+    scroll-behavior: smooth;
+    font-family: 'Barlow', sans-serif;
+}
+#main {
+    font-family: 'Barlow', sans-serif;
+}
+
+/* header */
+
+#t3-header {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    background: #B9964AFF;
+    border-radius: 0px;
+    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1F;
+    display: flex;
+    justify-content: space-between;
+    /* position: fixed; */
+    /* z-index: 999; */
+
+   
+}
+.t3-logo-quan {
+    height: 80px;
+    width: auto;
+    flex: 1;
+    border: 2px solid #B9964AFF;
+    flex: 1;
+    border-radius: 40px
+   
+}
+.t3-nav-ul ul {
+    display: flex;
+    justify-content: space-around;
+    
+}
+.t3-nav {
+    display: flex;
+    justify-content: space-around;
+    flex: 4.5;
+
+}
+.a1 {
+    flex: 4;
+    display: flex;
+}
+.t3-nav-item {
+    margin: auto;
+}
+.t3-nav-item a{
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-weight: 600;
+}
+.t3-nav-item a:hover {
+    color: white;
+}
+.t3-admin {
+    flex: 3;
+    margin: auto;
+    justify-content: center;
+}
+.t3-admin-box{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.t3-admin-icon {
+    font-size: 20px;
+}
+
+.t3-admin-name {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.dangxuat {
+    flex: 1;
+    justify-content: center;
+    margin: auto;
+}
+.t1-dangxuat {
+    justify-content: center;
+    margin: auto;
+    padding: 9px 15px;
+    background: #f5320b;
+    border-radius: 10px;
+    border: 1px solid red;
+
+
+}
+
+.t1-nut-hover:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+/* header */
+
+/* body */
+.t5-body {
+    background-color: #f8f7e6;
+}
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px 60px;
+    gap: 60px;
+  }
+  
+  .checkout-form {
+    flex: 1;
+  }
+  
+  .checkout-form h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+  }
+  
+  .checkout-form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .checkout-form input,
+  .checkout-form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .checkout-form input:focus,
+  .checkout-form textarea:focus {
+    border-color: #007bff;
+  }
+  
+  .checkout-form textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .order-summary {
+    flex: 1;
+  }
+  
+  .order-summary h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+  }
+  
+  .order-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .item-info {
+    flex: 1;
+  }
+  
+  .item-info p {
+    margin: 2px 0;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  .item-info p strong {
+    font-size: 16px;
+    color: #000;
+  }
+  
+  .total-section {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  .total-section p {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+  }
+  
+  .total-section strong {
+    font-size: 17px;
+    color: #000;
+  }
+  /* nút xác nhận đặt hàng */
+  .checkout-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .btn-confirm-order,
+  .btn-cancel-order {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .btn-confirm-order {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .btn-cancel-order {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  /* thông báo đặt hàng thành công */
+  /* Phần nền mờ */
+.modal {
+    display: none; /* Ẩn mặc định */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Nền mờ */
+  }
+  
+  /* Nội dung modal */
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Căn giữa theo chiều dọc và ngang */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  /* Nút đóng modal */
+  .close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    text-decoration: none;
+  }
+  
+/* body */
+/* footer */
+#t1-footer {
+    justify-content: space-between;
+    background-color: #423C38FF;
+    
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
+                url(/assets/img/ngoissao.jpg) no-repeat center/cover;
+    height: 450px;
+    backdrop-filter: blur(10px);
+}
+.p1 {
+    display: flex;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+.titlee {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc;
+}
+.menu {
+    flex: 1;
+
+}
+.list-menu,
+.list-lienket {
+    justify-content: center;
+    padding-left: 80px;
+    list-style: none;
+}
+.menu-item,
+.lienket-item {
+    padding-bottom: 10px;
+}
+.menu-item a,
+.lienket-item a {
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+.menu-item a:hover,
+.lienket-item a:hover {
+    color: rgb(95, 95, 247);
+}
+
+.lienket {
+    flex: 1;
+
+}
+.map {
+    flex: 2;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 300px;
+}
+.title-map {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+.khungmap {
+    height: 80%;
+    width: 80%;
+    border-radius: 10px;
+    opacity: 0.8;
+
+}
+.dc {
+    flex: 1;
+
+}
+.dchi-cuthe {
+    height: 60%;
+    overflow-y: auto; 
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #c0c0c0 transparent;
+    margin-left: 5px;
+}
+.titlee-dc {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc;
+}
+.diachi-list {
+    list-style: none;
+    padding-left: 0; /* tùy chọn, để bỏ luôn khoảng cách thụt vào */
+  }
+
+.diachi-item {
+    padding-bottom: 10px;
+    color: #ccc;
+
+}
+.diachi-item:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.p2 {
+    display: flex;
+}
+.p21 {
+    flex: 1;
+}
+.p21-infor {
+    color: #ccc;
+    padding-top: 5px;
+}
+.p22 {
+    flex: 3;
+    color: #ccc;
+    justify-content: center;
+    text-align: center; 
+}
+.p23 {
+    flex: 1;
+}
+.p23-infor {
+    color: #ccc;
+    padding-top: 5px;
+}
+/* footer */
+/* Container 2 */

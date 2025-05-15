@@ -1,0 +1,100 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 2px solid #ddd;
+    position: relative;
+}
+
+.header .admin {
+    font-weight: bold;
+}
+
+/* Container chính */
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #f1f1f1;
+    padding: 10px;
+    height: 100vh;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 10px;
+    cursor: pointer;
+}
+.sidebar a{
+    text-decoration: none;
+    color: black;
+}
+.sidebar a:hover{
+    text-decoration: underline;
+    color: blue;
+}
+.sidebar .active {
+    background: lightblue;
+}
+
+/* Nội dung chính */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+/* Nút bấm */
+button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.add {
+    background: orange;
+    color: white;
+}
+
+.edit {
+    background: skyblue;
+    color: white;
+}
+
+.delete {
+    background: red;
+    color: white;
+}

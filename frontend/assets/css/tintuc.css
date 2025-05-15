@@ -1,0 +1,328 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* common */
+html{
+    scroll-behavior: smooth;
+    font-family: 'Barlow', sans-serif;
+}
+#main {
+    font-family: 'Barlow', sans-serif;
+}
+
+/* header */
+
+#t3-header {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    background: #B9964AFF;
+    border-radius: 0px;
+    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1F;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 999;
+
+   
+}
+.t3-logo-quan {
+    height: 80px;
+    width: auto;
+    flex: 1;
+    border: 2px solid #B9964AFF;
+    flex: 1;
+    border-radius: 40px
+   
+}
+.t3-nav-ul ul {
+    display: flex;
+    justify-content: space-around;
+    
+}
+.t3-nav {
+    display: flex;
+    justify-content: space-around;
+    flex: 4.5;
+
+}
+.a1 {
+    flex: 4;
+    display: flex;
+}
+.t3-nav-item {
+    margin: auto;
+}
+.t3-nav-item a{
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-weight: 600;
+}
+.t3-nav-item a:hover {
+    color: white;
+}
+.t3-admin {
+    flex: 3;
+    margin: auto;
+    justify-content: center;
+}
+.t3-admin-box{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.t3-admin-icon {
+    font-size: 20px;
+}
+
+.t3-admin-name {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.dangxuat {
+    flex: 1;
+    justify-content: center;
+    margin: auto;
+}
+.t1-dangxuat {
+    justify-content: center;
+    margin: auto;
+    padding: 9px 15px;
+    background: #f5320b;
+    border-radius: 10px;
+    border: 1px solid red;
+
+
+}
+
+.t1-nut-hover:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+/* header */
+/* body */
+
+#t4-body {
+    display: flex;
+    min-height: 700px;
+    background-image: url(https://p16-capcut-cms-sg.ibyteimg.com/tos-alisg-i-6rr7idwo9f-sg/1704770062684.image~tplv-6rr7idwo9f-image.image);
+
+}
+.t4-danhmuc {
+    flex: 1;
+    position: relative;
+}
+.t4-tintuc {
+    flex: 3;
+}
+.tintuc-item {
+    padding-top: 70px;
+}
+.t4-danhmuc-box {
+    position: fixed;
+    margin-top: 80px;
+    margin-left: 20px;
+    
+}
+.t4-danhmuc-hder {
+    font-size: 28px;
+    color: #d3b673; 
+    margin-top: 10px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-decoration: underline;
+}
+.t4-danhmuc-list li {
+    list-style-type: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.t4-danhmuc-list a {
+    text-decoration: none;
+    margin-left: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+.t4-danhmuc-list a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+.t4-chung {
+    color: black;
+}
+
+
+.content-header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+.news-item {
+    margin-bottom: 20px;
+}
+.item-img {
+    width: 80%;
+}
+.btn {
+    display: inline-block;
+    background-color: #c2a15c;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+}
+.full-content {
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+}
+
+.content-header-small {
+    margin-left: 10px;
+}
+.news-item h3 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 16px;
+
+}
+
+/* body */
+
+/* footer */
+#t1-footer {
+    justify-content: space-between;
+    background-color: #423C38FF;
+    
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
+                url(/assets/img/ngoissao.jpg) no-repeat center/cover;
+    height: 450px;
+    backdrop-filter: blur(10px);
+}
+.p1 {
+    display: flex;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+.titlee {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc;
+}
+.menu {
+    flex: 1;
+
+}
+.list-menu,
+.list-lienket {
+    justify-content: center;
+    padding-left: 80px;
+    list-style: none;
+}
+.menu-item,
+.lienket-item {
+    padding-bottom: 10px;
+}
+.menu-item a,
+.lienket-item a {
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+.menu-item a:hover,
+.lienket-item a:hover {
+    color: rgb(95, 95, 247);
+}
+
+.lienket {
+    flex: 1;
+
+}
+.map {
+    flex: 2;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 300px;
+}
+.title-map {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+.khungmap {
+    height: 80%;
+    width: 80%;
+    border-radius: 10px;
+    opacity: 0.8;
+
+}
+.dc {
+    flex: 1;
+
+}
+.dchi-cuthe {
+    height: 60%;
+    overflow-y: auto; 
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #c0c0c0 transparent;
+    margin-left: 5px;
+}
+.titlee-dc {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc;
+}
+.diachi-list {
+    list-style: none;
+    padding-left: 0; /* tùy chọn, để bỏ luôn khoảng cách thụt vào */
+  }
+
+.diachi-item {
+    padding-bottom: 10px;
+    color: #ccc;
+
+}
+.diachi-item:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.p2 {
+    display: flex;
+}
+.p21 {
+    flex: 1;
+}
+.p21-infor {
+    color: #ccc;
+    padding-top: 5px;
+}
+.p22 {
+    flex: 3;
+    color: #ccc;
+    justify-content: center;
+    text-align: center; 
+}
+.p23 {
+    flex: 1;
+}
+.p23-infor {
+    color: #ccc;
+    padding-top: 5px;
+}
+/* footer */
+/* Container 2 */

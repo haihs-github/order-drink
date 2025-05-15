@@ -1,0 +1,759 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* common */
+html {
+    scroll-behavior: smooth;
+    font-family: 'Barlow', sans-serif;
+}
+
+#main {
+    font-family: 'Barlow', sans-serif;
+}
+
+/* header */
+
+#t3-header {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    background: #B9964AFF;
+    border-radius: 0px;
+    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1F;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 999;
+
+
+}
+
+.t3-logo-quan {
+    height: 80px;
+    width: auto;
+    flex: 1;
+    border: 2px solid #B9964AFF;
+    flex: 1;
+    border-radius: 40px
+}
+
+.t3-nav-ul ul {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.t3-nav {
+    display: flex;
+    justify-content: space-around;
+    flex: 4.5;
+
+}
+
+.a1 {
+    flex: 4;
+    display: flex;
+}
+
+.t3-nav-item {
+    margin: auto;
+}
+
+.t3-nav-item a {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.t3-nav-item a:hover {
+    color: white;
+}
+
+.t3-admin {
+    flex: 3;
+    margin: auto;
+    justify-content: center;
+}
+
+.t3-admin-box {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.t3-admin-icon {
+    font-size: 20px;
+}
+
+.t3-admin-name {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.dangxuat {
+    flex: 1;
+    justify-content: center;
+    margin: auto;
+}
+
+.t1-dangxuat {
+    justify-content: center;
+    margin: auto;
+    padding: 9px 15px;
+    background: #f5320b;
+    border-radius: 10px;
+    border: 1px solid red;
+
+
+}
+
+.t1-nut-hover:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* them giong trang chu */
+
+.t1-trong {
+    flex: 1;
+}
+
+
+/* header */
+
+
+/* body */
+#t3-body {
+    margin-top: 0px;
+    background-image: url(https://p16-capcut-cms-sg.ibyteimg.com/tos-alisg-i-6rr7idwo9f-sg/1704770062684.image~tplv-6rr7idwo9f-image.image);
+
+}
+
+#t3-timkiem {
+    margin: auto;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding-top: 80px;
+    background-image: url(https://p16-capcut-cms-sg.ibyteimg.com/tos-alisg-i-6rr7idwo9f-sg/1704770062684.image~tplv-6rr7idwo9f-image.image);
+
+}
+
+.t3-timkiem1 {
+    margin: auto;
+    border: 2px solid #ccc;
+    padding: 8px 5px;
+    padding-left: 5px;
+    padding-right: 35px;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 40%;
+
+}
+
+.t3-info-body {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* dan mục */
+.t3-danhmuc {
+    flex: 1;
+    position: relative;
+}
+
+.t3-danhmuc-quaylai a {
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 320px;
+    left: 40px;
+    padding: 8px 90px;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #eece83;
+}
+
+.t3-danhmuc-quaylai a:hover {
+    background-color: #757575;
+    color: white;
+}
+
+.t3-danhmuc-info {
+    margin-left: 40px;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-left: 20px;
+    margin-top: 30px;
+    position: fixed;
+    background-color: white;
+}
+
+.t3-danhmuc-title {
+    font-size: 15px;
+    margin-top: 10px;
+
+}
+
+.t3-danhmuc-list {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.t3-danhmuc-list li {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    margin-top: 13px;
+    padding-right: 60px;
+
+}
+
+.t3-danhmuc-list a:hover {
+    color: rgb(128, 128, 237);
+}
+
+.t3-danhmuc-item li {
+    list-style: none;
+
+
+}
+
+.t3-danhmuc-item a {
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+
+}
+
+/* danh mục */
+
+/* sản phẩm */
+.t3-sanpham {
+    flex: 2;
+}
+
+.t3-trasua-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #8a733f;
+    border-bottom: 2px solid #8a733f;
+}
+
+.t3-trasua-list {
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+.t3-trasua-item {
+    width: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.t3-ts-img {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+
+}
+
+.t3-ts-name {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1rem;
+    padding: 5px 0;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+.t3-ts-gia {
+    font-size: 14px;
+    color: #8a733f;
+    font-weight: 550;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.t3-ts-iconn i {
+    position: absolute;
+    bottom: 10px;
+    /* Cách trên 10px */
+    right: 10px;
+
+}
+
+/* sản phẩm */
+
+/* Giỏ hàng */
+.t3-giohang {
+    flex: 1;
+}
+
+.t3-giohang-box {
+    border: 1px solid #ccc;
+    margin: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.t3-giohang-header {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+.clear-cart {
+    margin: 10px 15px;
+    color: red;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.t3-giohang-body {
+    padding: 0 15px 15px;
+}
+
+.empty-cart {
+    margin: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Mỗi item trong giỏ */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Tên sản phẩm */
+.cart-item .cart-name {
+    flex: 2;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Bộ điều khiển tăng/giảm số lượng */
+.cart-item .cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 0.5;
+    justify-content: center;
+}
+
+.cart-note {
+    font-size: 10px;
+}
+
+.cart-controls button {
+    color: #ffffff;
+    background: #799dd9;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0;
+    line-height: 15px;
+    font-size: 23px;
+    font-weight: 500;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+
+}
+
+.cart-controls input {
+    width: 30px;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    background: transparent;
+}
+
+/* Tổng giá */
+.cart-item .cart-total {
+    flex: 0.5;
+    font-size: 14px;
+    font-weight: bold;
+    color: #eece83;
+    text-align: right;
+    /* margin-top: 10px; */
+}
+
+.cart-total-mid {
+    margin-top: 10px;
+}
+
+/* Xóa sản phẩm */
+.cart-item .remove-item {
+    margin-left: 10px;
+    color: red;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cart-item .remove-item:hover {
+    text-decoration: underline;
+}
+
+/* Tổng tiền giỏ hàng */
+.cart-summary {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Nút thanh toán */
+.t1-thanhtoan {
+    text-align: center;
+    padding: 10px 15px;
+    background-color: #eece83;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 90%;
+    margin: 20px auto;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.t1-thanhtoan:hover {
+    background-color: #d6b94a;
+}
+
+
+/* color: #799dd9; */
+/* body */
+/* chi tiết sản phẩm */
+
+.product-detail-overlay {
+    display: none;
+    /* ẩn mặc định */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Khung nội dung */
+.product-detail-content {
+    background: #fff;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+}
+
+/* Nút đóng */
+.close-btn {
+    position: absolute;
+    top: 0.1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Ảnh sản phẩm */
+.product-detail-content .anh {
+    flex: 1 1 40%;
+}
+
+.product-detail-content .anh img {
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* Thông tin bên phải */
+.product-detail-content .infor {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.product-detail-content .infor h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.product-detail-content .infor p#detailPrice {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #d4b87d;
+    font-weight: bold;
+}
+
+.product-detail-content .infor p:not(#detailPrice) {
+    margin: 0.5rem 0;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Section số lượng */
+.quantity-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.quantity-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    background: #799dd9;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    padding: 0.2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Tổng tiền */
+#totalPrice {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* chọn loại và chọn đường */
+.option-section {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.option-section label {
+    font-weight: 500;
+    min-width: 60px;
+}
+
+.option-select {
+    padding: 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* nút thêm vào giỏ hàng */
+
+.add-to-cart-btn {
+    background-color: #ff7f50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #ff5722;
+}
+
+
+
+/* chi tiết sản phẩm */
+/* footer */
+#t1-footer {
+    justify-content: space-between;
+    background-color: #423C38FF;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+        url(/assets/img/ngoissao.jpg) no-repeat center/cover;
+    height: 450px;
+    backdrop-filter: blur(10px);
+}
+
+.p1 {
+    display: flex;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
+.titlee {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc;
+}
+
+.menu {
+    flex: 1;
+
+}
+
+.list-menu,
+.list-lienket {
+    justify-content: center;
+    padding-left: 80px;
+    list-style: none;
+}
+
+.menu-item,
+.lienket-item {
+    padding-bottom: 10px;
+}
+
+.menu-item a,
+.lienket-item a {
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.menu-item a:hover,
+.lienket-item a:hover {
+    color: rgb(95, 95, 247);
+}
+
+.lienket {
+    flex: 1;
+
+}
+
+.map {
+    flex: 2;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 300px;
+}
+
+.title-map {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.khungmap {
+    height: 80%;
+    width: 80%;
+    border-radius: 10px;
+    opacity: 0.8;
+
+}
+
+.dc {
+    flex: 1;
+
+}
+
+.dchi-cuthe {
+    height: 60%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: #c0c0c0 transparent;
+    margin-left: 5px;
+}
+
+.titlee-dc {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc;
+}
+
+.diachi-list {
+    list-style: none;
+    padding-left: 0;
+    /* tùy chọn, để bỏ luôn khoảng cách thụt vào */
+}
+
+.diachi-item {
+    padding-bottom: 10px;
+    color: #ccc;
+
+}
+
+.diachi-item:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.p2 {
+    display: flex;
+}
+
+.p21 {
+    flex: 1;
+}
+
+.p21-infor {
+    color: #ccc;
+    padding-top: 5px;
+}
+
+.p22 {
+    flex: 3;
+    color: #ccc;
+    justify-content: center;
+    text-align: center;
+}
+
+.p23 {
+    flex: 1;
+}
+
+.p23-infor {
+    color: #ccc;
+    padding-top: 5px;
+}
+
+/* footer */
+/* Container 2 */

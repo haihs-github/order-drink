@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Band</title>
+    <link rel="stylesheet" href="../assets/css/gioithieu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/font/themify-icons/themify-icons.css">
+
+</head>
+<body>
+    <div id="main">
+        <div id="t3-header">
+            <div class="t3-logo">
+                <img src="../assets/img/logo.png" alt="" class="t3-logo-quan">
+            </div>
+            <div class="t3-nav">
+                <div class="t3-nav-item"><a href="trangchu.html">TRANG CHỦ</a></div>
+                <div class="t3-nav-item"><a href="#">GIỚI THIỆU</a></div>
+                <div class="t3-nav-item"><a href="sanpham.html">SẢN PHẨM</a></div>
+                <div class="t3-nav-item"><a href="tintuc.html">TIN TỨC</a></div>
+                <div class="t3-nav-item"><a href="lienhe.html">LIÊN HỆ</a></div>
+                <div class="t3-nav-item"><a href="hethongcuahang.html">HỆ THỐNG CỬA HÀNG</a></div>
+            </div>
+            <div class="a1">
+                <div class="t3-admin">
+                    <div class="t3-admin-box">
+                        <div class="t3-admin-icon">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+                        <p class="t3-admin-name">Admin</p>
+                    </div>
+                </div>
+                <div class="dangxuat">
+                    <button class="t1-dangxuat t1-nut-hover">Đăng Xuất</button>
+                </div>
+            </div>
+            
+        </div>
+        <div id="t2-body">
+            <div class="t2-content">
+                <h2 class="t2-header">GIỚI THIỆU</h2>
+                <h3 class="t2-content-header">✨ Coffe Phố Mới – Hành trình mang hương vị Việt vươn xa thế giới ✨</h3>
+
+                <p class="t2-content-d1">
+                    Với niềm đam mê mãnh liệt dành cho nông sản Việt, Coffe Phố Mới ra đời vào năm 2013 với sứ mệnh mang đến những ly thức uống tươi ngon, an toàn và đậm đà bản sắc quê hương. Chúng tôi tin rằng một ly trà sữa không chỉ đơn thuần là đồ uống mà còn là sự kết tinh của những gì tinh túy nhất: trà Mộc Châu thơm nồng, trân châu từ sắn dây Nghệ An dẻo dai, mứt dâu tằm Đà Lạt ngọt lành – tất cả hòa quyện để tạo nên một trải nghiệm trọn vẹn cho khách hàng.
+                </p>
+                <h3 class="t2-content-header">🚀 Vươn xa nhưng không quên cội nguồn 🚀</h3>
+                
+                <p class="t2-content-d1">
+                    Mỗi ly trà sữa của Coffe Phố Mới không chỉ là thức uống mà còn là câu chuyện về sự tâm huyết, về những người nông dân Việt Nam cần mẫn, về những nguyên liệu tinh khiết được chắt lọc từ chính quê hương.
+                </p>
+                <h3 class="t2-content-header">☕ Coffe Phố Mới – Trà sữa thuần Việt, lan tỏa yêu thương! ☕</h3>
+                
+                <p class="t2-content-d1">
+                    Hành trình của chúng tôi chưa dừng lại ở đó! Coffe Phố Mới sẽ tiếp tục lan tỏa hương vị Việt đến muôn nơi, để bất cứ ai cũng có thể thưởng thức một ly trà sữa chuẩn chất Việt Nam!
+                </p>
+                <h3 class="t2-content-header">🌱 Cam kết chất lượng – Bền vững từ nguyên liệu đến tay bạn 🌱</h3>
+                
+                <p class="t2-content-d1 t2-content-d1-laster">
+                    Chúng tôi luôn đặt chất lượng lên hàng đầu, từ việc tuyển chọn nguyên liệu tự nhiên, không chất bảo quản đến quy trình chế biến nghiêm ngặt, đảm bảo từng ly trà sữa đến tay khách hàng đều đạt chuẩn thơm ngon và an toàn tuyệt đối. Coffe Phố Mới không chỉ mang đến hương vị hoàn hảo mà còn cam kết đồng hành cùng sự phát triển bền vững của nền nông nghiệp Việt Nam.
+                </p>
+            </div>
+            <div class="slider">
+                <div class="slide active"><img src="https://cdn.pixabay.com/photo/2020/07/19/09/57/hill-5419527_1280.jpg" alt="Slide 1"></div>
+                <div class="slide"><img src="https://cdn.pixabay.com/photo/2017/02/20/08/50/cafe-2081857_1280.jpg" alt="Slide 2"></div>
+                <div class="slide"><img src="https://cdn.pixabay.com/photo/2019/03/13/16/41/coffee-4053245_1280.jpg" alt="Slide 3"></div>
+                
+                <button class="prev" onclick="changeSlide(-1)">❮</button>
+                <button class="next" onclick="changeSlide(1)">❯</button>
+            </div>
+            <script>
+                let currentIndex = 0;
+                const slides = document.querySelectorAll(".slide");
+                const totalSlides = slides.length;
+        
+                function changeSlide(direction) {
+                    slides[currentIndex].classList.remove("active");
+                    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+                    slides[currentIndex].classList.add("active");
+                }
+        
+                // Slide tự động chạy mỗi 3 giây
+                setInterval(() => changeSlide(1), 4000);
+            </script>
+        </div>
+        <div id="t1-footer">
+            <div class="p1">
+                <div class="menu">
+                    <h2 class="titlee">Coffee Phố Mới</h2>
+                    <ul class="list-menu">
+                        <li class="menu-item"><a href="trangchu.html">Trang chủ</a></li>
+                        <li class="menu-item"><a href="gioithieu.html">Giới thiệu</a></li>
+                        <li class="menu-item"><a href="sanpham.html">Sản phẩm</a></li>
+                        <li class="menu-item"><a href="tintuc.html">Tin tức</a></li>
+                        <li class="menu-item"><a href="lienhe.html">Liên hệ</a></li>
+                        <li class="menu-item"><a href="hethongcuahang.html">Hệ thống cửa hàng</a></li>
+                    </ul>
+                </div>
+                <div class="lienket">
+                    <h2 class="titlee">Liên kết với chúng tôi</h2>
+                    <ul class="list-lienket">
+                        <li class="lienket-item">
+                            <span class="ti-facebook"  style="color: white;"></span>
+                            <a href="https://www.facebook.com/nguyen.manh.dung.283177/">Facebook</a>
+                        </li>
+                        <li class="lienket-item">
+                            <span class="ti-instagram"  style="color: white;"></span>
+                            <a href="https://www.instagram.com/nmdung_3114/">Instagram</a>
+                        </li>
+                        <li class="lienket-item">
+                            <span class="ti-youtube"  style="color: white;"></span>
+                            <a href="https://www.youtube.com/@DungNguyen-ys7cl">Youtube</a>
+                        </li>
+                        <li class="lienket-item">
+                            <span class="ti-email" style="color: white;"></span>
+                            <a href="https://myaccount.google.com/?hl=vi&utm_source=OGB&utm_medium=act&gar=WzEyMF0&nlr=1">gmail: manhdung2724@gmail.com</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="map">
+                    <div class="khungmap">
+                        <h2 class="title-map">Google map</h2>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d14898.969029177668!2d105.79476479999998!3d21.0029664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zLA!5e0!3m2!1svi!2s!4v1744738471336!5m2!1svi!2s" width="100%" height="100%" style="border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                </div>
+                <div class="dc">
+                    <h2 class="titlee-dc">Hệ thống cửa hàng</h2>
+                    <div class="dchi-cuthe">
+                        <ul class="diachi-list">
+                            <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Thanh Xuân
+                            </li>
+                            
+                            
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.91671232389!2d105.81229357503044!3d20.995975480645157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad2624f9202d%3A0xaeb77f2425a2c642!2sToco%20toco!5e0!3m2!1svi!2s!4v1744722152752!5m2!1svi!2s">
+                                   Trà Sữa ToCoToCo Thượng Đình
+                                    
+                                </li>
+                            
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6377741151164!2d105.7908376750308!3d21.00715228063678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aca8b1e8e9fb%3A0xa50a6c36b7820da9!2zVHLDoCBT4buvYSBUb0NvVG9DbyBCaWcgQyBUaMSDbmcgTG9uZw!5e0!3m2!1svi!2s!4v1744722194277!5m2!1svi!2s">
+                                    Trà Sữa ToCoToCo Big C Thăng Long
+                                    
+                                </li>
+                            
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                    Trà Sữa ToCoToCo Nguyễn Quý Đức
+                                   
+                                </li>
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                    Trà Sữa ToCoToCo Thành Công
+                                    
+                                </li>
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                    Trà Sữa ToCoToCo Dương Đình Nghệ
+                                    
+                                </li>
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                    Trà Sữa ToCoToCo Trần Duy Hưng
+                                    
+                                </li>
+                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                    Trà Sữa ToCoToCo Hàng Bông
+                                    
+                                </li>
+                                
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="p2">
+                <div class="p21">
+                    <p class="p21-infor">©2009-2021 JM All Rights Reserved</p>
+                </div>
+                <div class="p22">
+                    <h3 style="padding-top: 5px;padding-bottom: 30px;">CÔNG TY CỔ PHẦN THƯƠNG MẠI JDD VIỆT NAM</h3>
+                    <p>Trụ sở chính: Ô số 02-NV26, Khu đô thị mới Bắc quốc lộ 32, Thị trấn Trạm Trôi, Huyện Hoài Đức, Hà Nội</p>
+                    <p>Giấy chứng nhận Đăng ký Kinh doanh số 0110596586 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp lần đầu ngày 10/01/2024</p>
+                </div>
+                <div class="p23">
+                    <p class="p23-infor">Chúng tôi chỉ nhận thanh toán qua tiền mặt</p>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            const items = document.querySelectorAll('.diachi-item');
+            const mapIframe = document.querySelector('.khungmap iframe');
+        
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    const newSrc = item.getAttribute('data-src');
+                    mapIframe.setAttribute('src', newSrc);
+                });
+            });
+        </script>
+    </div>
+    </div>
+</body>
+</html>
+
+
