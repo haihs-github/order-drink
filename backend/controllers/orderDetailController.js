@@ -23,6 +23,30 @@ exports.getOrderDetailById = async (req, res) => {
 	}
 };
 
+// lấy orderDetail của một đơn hàng
+exports.getOrderDetails = async (req, res) => {
+	try {
+		const orderId = req.params.id;
+
+		// Tìm chi tiết đơn hàng dựa trên order_id
+		const orderDetails = await OrderDetail.find({ order_id: orderId })
+		console.log("orderDetails", orderDetails);
+		// .populate('product_id'); // Lấy cả tên và giá sản phẩm
+
+		// Kiểm tra xem có chi tiết đơn hàng nào không
+		if (!orderDetails || orderDetails.length === 0) {
+			return res.status(404).json({ message: 'Không tìm thấy chi tiết đơn hàng cho đơn hàng này' });
+		}
+
+		// Trả về chi tiết đơn hàng
+		res.status(200).json(orderDetails);
+	} catch (error) {
+		// Xử lý lỗi nếu có
+		console.error(error);
+		res.status(500).json({ message: 'Lỗi server: ' + error.message });
+	}
+};
+
 // Hàm tạo một chi tiết đơn hàng mới
 exports.createOrderDetail = async (req, res) => {
 	try {

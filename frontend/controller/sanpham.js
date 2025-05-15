@@ -434,3 +434,5 @@ function proceedToCheckout() {
 	// Dữ liệu giỏ hàng đã được lưu trong localStorage
 	window.location.href = "chitietthanhtoan.html"; // Thay bằng đường dẫn thực tế của trang chi tiết thanh toán
 }
+
+

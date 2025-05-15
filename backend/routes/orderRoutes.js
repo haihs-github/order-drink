@@ -12,7 +12,7 @@ router.delete('/:id', orderController.deleteOrder);
 
 // // Routes cho OrderDetail
 // router.get('/order-details', OrderDetailController.getAllOrderDetails);
-// router.get('/order-details/:id', OrderDetailController.getOrderDetailById);
+router.get('/order-details/:id', orderDetailController.getOrderDetails);
 // router.post('/order-details', OrderDetailController.createOrderDetail);
 // router.put('/order-details/:id', OrderDetailController.updateOrderDetail);
 // router.delete('/order-details/:id', OrderDetailController.deleteOrderDetail);
