@@ -10,7 +10,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="../assets//css//trangchu.css">
     <link rel="stylesheet" href="../assets/font/themify-icons/themify-icons.css">
 
 </head>
@@ -30,19 +30,25 @@
                 <div class="t3-nav-item"><a href="hethongcuahang.html">HỆ THỐNG CỬA HÀNG</a></div>
             </div>
             <div class="a1">
-                <div class="t3-admin">
-                    <div class="t3-admin-box">
-                        <div class="t3-admin-icon">
-                            <i class="fa-solid fa-circle-user"></i>
-                        </div>
-                        <p class="t3-admin-name">Admin</p>
+                <div class="t1-trong">
+                </div>
+                <div class="t1-search-login">
+                    <div class="t1-timkiem">
+                        <i style="color: white; margin-right: 10px;" class="fa-solid fa-magnifying-glass"></i>
+                        <input class="t1-timkiem1" type="text" placeholder="Tìm kiếm">
+                    </div>
+                    <div id="login-buttons">
+                        <button onclick="window.location.href='dangnhap.html'" class="t1-dangnhap t1-nut-hover">Đăng
+                            Nhập</button>
+                        <button onclick="window.location.href='dangki.html'" class="t1-dangki t1-nut-hover">Đăng
+                            Ký</button>
+                    </div>
+                    <div id="user-info" style="display: none;">
+                        <button class="t1-dangnhap" id="username-display"></button>
+                        <button id="logout-button" class="t1-dangki t1-nut-hover">Đăng xuất</button>
                     </div>
                 </div>
-                <div class="dangxuat">
-                    <button class="t1-dangxuat t1-nut-hover">Đăng Xuất</button>
-                </div>
             </div>
-
         </div>
         <div class="t5-body">
             <div class="checkout-container">
@@ -218,69 +224,8 @@
 
 
     <!-- java -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-            const orderSummary = document.querySelector('.order-summary');
-            const totalSection = orderSummary.querySelector('.total-section');
-
-            // Xóa các mục đơn hàng cũ nếu có
-            const oldItems = orderSummary.querySelectorAll('.order-item');
-            oldItems.forEach(item => item.remove());
-
-            let subtotal = 0;
-
-            cartData.forEach(item => {
-                const { name, note, quantity, price } = item;
-                const total = price * quantity;
-                subtotal += total;
-
-                const orderItem = document.createElement('div');
-                orderItem.classList.add('order-item');
-                orderItem.innerHTML = `
-              <img src="https://i.imgur.com/YJvJr3E.png" alt="${name}">
-              <div class="item-info">
-                <p>${name}</p>
-                <p>${note} (SL: ${quantity})</p>
-                <p><strong>${total.toLocaleString('vi-VN')} VNĐ</strong></p>
-              </div>
-            `;
-                orderSummary.insertBefore(orderItem, totalSection);
-            });
-
-            // Cập nhật tổng tiền
-            const shippingFee = 0;
-            const grandTotal = subtotal + shippingFee;
-
-            totalSection.innerHTML = `
-            <p><span>Số tiền</span> <span>${subtotal.toLocaleString('vi-VN')} VNĐ</span></p>
-            <p><span>Phí vận chuyển</span> <span>${shippingFee.toLocaleString('vi-VN')} VNĐ</span></p>
-            <p><span>Hình thức thanh toán</span> <span>Thanh toán khi nhận hàng</span></p>
-            <p><strong>Tổng thanh toán</strong> <strong>${grandTotal.toLocaleString('vi-VN')} VNĐ</strong></p>
-          `;
-        });
-        // xử lí nút xác nhận đặt hàng
-        document.querySelector('.btn-confirm-order').addEventListener('click', () => {
-            // Thực hiện hành động xác nhận đặt hàng
-            alert('Đơn hàng của bạn đã được xác nhận!');
-
-            // Xóa giỏ hàng sau khi đặt hàng thành công
-            localStorage.removeItem('cart');     
-            location.reload();     
-        });
-
-        document.querySelector('.btn-cancel-order').addEventListener('click', () => {
-            // Thực hiện hành động hủy đặt hàng
-            if (confirm('Bạn có chắc chắn muốn hủy đơn hàng không?')) {
-                // Xóa dữ liệu giỏ hàng và làm mới trang
-                localStorage.removeItem('cart');
-                location.reload();
-            }
-        });
-
-    </script>
-    
-
+    <script src="../controller/trangchu.js"></script>
+    <script src="../controller/chitietthanhtoan.js"></script>
 </body>
 
 </html>

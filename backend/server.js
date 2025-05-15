@@ -9,6 +9,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,7 @@ const { verifyToken, isAdmin } = require("./middlewares/auth");
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/orders", orderRoutes);
 
 // // Routes placeholder (bạn sẽ thêm sau)
 // app.get("/", (req, res) => {
