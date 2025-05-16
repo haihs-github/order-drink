@@ -70,14 +70,16 @@ table {
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 12px 10px;
     text-align: left;
     font-size: 15px;
+    max-width: fit-content;
 }
 
 th {
@@ -85,19 +87,7 @@ th {
     font-weight: bold;
 }
 
-/* Tăng độ rộng cho cột "Liên hệ" */
-td:nth-child(3),
-th:nth-child(3) {
-    width: 50%;
-}
 
-/* Giảm độ rộng 2 cột đầu */
-td:nth-child(1),
-th:nth-child(1),
-td:nth-child(2),
-th:nth-child(2) {
-    width: 25%;
-}
 
 /* Nút bấm (nếu cần dùng sau này) */
 button {

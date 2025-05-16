@@ -1,14 +1,15 @@
-
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
 /* common */
-html{
+html {
     scroll-behavior: smooth;
     font-family: 'Barlow', sans-serif;
 }
+
 #main {
     font-family: 'Barlow', sans-serif;
 }
@@ -28,8 +29,9 @@ html{
     /* position: fixed; */
     /* z-index: 999; */
 
-   
+
 }
+
 .t3-logo-quan {
     height: 80px;
     width: auto;
@@ -37,45 +39,53 @@ html{
     border: 2px solid #B9964AFF;
     flex: 1;
     border-radius: 40px
-   
 }
+
 .t3-nav-ul ul {
     display: flex;
     justify-content: space-around;
-    
+
 }
+
 .t3-nav {
     display: flex;
     justify-content: space-around;
     flex: 4.5;
 
 }
+
 .a1 {
     flex: 4;
     display: flex;
 }
+
 .t3-nav-item {
     margin: auto;
 }
-.t3-nav-item a{
+
+.t3-nav-item a {
     text-decoration: none;
     color: black;
     font-size: 17px;
     font-weight: 600;
 }
+
 .t3-nav-item a:hover {
     color: white;
 }
+
 .t3-admin {
     flex: 3;
     margin: auto;
     justify-content: center;
 }
-.t3-admin-box{
+
+.t3-admin-box {
     display: flex;
     margin: auto;
     justify-content: center;
 }
+
 .t3-admin-icon {
     font-size: 20px;
 }
@@ -84,11 +94,13 @@ html{
     font-size: 18px;
     margin-left: 10px;
 }
+
 .dangxuat {
     flex: 1;
     justify-content: center;
     margin: auto;
 }
+
 .t1-dangxuat {
     justify-content: center;
     margin: auto;
@@ -112,8 +124,9 @@ html{
 .t5-body {
     display: flex;
     background-image: url(https://p16-capcut-cms-sg.ibyteimg.com/tos-alisg-i-6rr7idwo9f-sg/1704770062684.image~tplv-6rr7idwo9f-image.image);
-    height:615px;
+    height: 615px;
 }
+
 .t5-lienhe-box {
     margin: auto;
     border: 1px solid #ccc;
@@ -121,30 +134,36 @@ html{
     width: 40%;
     border-radius: 20px;
     background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     /* background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20210713/pngtree-sunny-beach-background-cartoon-image_740687.jpg); */
 }
+
 .t5-lienhe-box1 {
     padding-top: 20px;
     padding-left: 20px;
 
 }
+
 .t5-lienhe-name {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .t5-lienhe-tkhoan {
     display: flex;
     flex-direction: column;
 }
+
 .t5-lienhe-ykien {
     display: flex;
     flex-direction: column;
 }
+
 .lienhe-chung {
     margin-top: 20px;
 }
+
 .textchung {
     border-radius: 5px;
     margin-top: 5px;
@@ -153,9 +172,11 @@ html{
     border: none;
     padding: 5px;
 }
+
 .text-name-tkhoan {
     width: 60%;
 }
+
 .submit-btn {
     background-color: #1dd75b;
     width: 95%;
@@ -169,50 +190,57 @@ html{
 .submit-btn:hover {
     background-color: rgb(11, 192, 11);
     cursor: pointer;
-} 
+}
 
 /* body */
 /* footer */
 #t1-footer {
     justify-content: space-between;
     background-color: #423C38FF;
-    
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
-                url(/assets/img/ngoissao.jpg) no-repeat center/cover;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+        url(/assets/img/ngoissao.jpg) no-repeat center/cover;
     height: 450px;
     backdrop-filter: blur(10px);
 }
+
 .p1 {
     display: flex;
     border-bottom: 2px solid black;
     padding-bottom: 20px;
 }
+
 .titlee {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     color: #ccc;
 }
+
 .menu {
     flex: 1;
 
 }
+
 .list-menu,
 .list-lienket {
     justify-content: center;
     padding-left: 80px;
     list-style: none;
 }
+
 .menu-item,
 .lienket-item {
     padding-bottom: 10px;
 }
+
 .menu-item a,
 .lienket-item a {
     color: #ccc;
     text-decoration: none;
     margin-bottom: 20px;
 }
+
 .menu-item a:hover,
 .lienket-item a:hover {
     color: rgb(95, 95, 247);
@@ -222,6 +250,7 @@ html{
     flex: 1;
 
 }
+
 .map {
     flex: 2;
 
@@ -230,11 +259,13 @@ html{
     text-align: center;
     height: 300px;
 }
+
 .title-map {
     padding-top: 10px;
     margin-bottom: 10px;
     color: #ccc;
 }
+
 .khungmap {
     height: 80%;
     width: 80%;
@@ -242,32 +273,39 @@ html{
     opacity: 0.8;
 
 }
+
 .dc {
     flex: 1;
 
 }
+
 .dchi-cuthe {
     height: 60%;
-    overflow-y: auto; 
-    scrollbar-width: thin; /* Firefox */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    /* Firefox */
     scrollbar-color: #c0c0c0 transparent;
     margin-left: 5px;
 }
+
 .titlee-dc {
     padding-top: 20px;
     padding-bottom: 20px;
     color: #ccc;
 }
+
 .diachi-list {
     list-style: none;
-    padding-left: 0; /* tùy chọn, để bỏ luôn khoảng cách thụt vào */
-  }
+    padding-left: 0;
+    /* tùy chọn, để bỏ luôn khoảng cách thụt vào */
+}
 
 .diachi-item {
     padding-bottom: 10px;
     color: #ccc;
 
 }
+
 .diachi-item:hover {
     cursor: pointer;
     opacity: 0.7;
@@ -277,25 +315,32 @@ html{
 .p2 {
     display: flex;
 }
+
 .p21 {
     flex: 1;
 }
+
 .p21-infor {
     color: #ccc;
     padding-top: 5px;
 }
+
 .p22 {
     flex: 3;
     color: #ccc;
     justify-content: center;
-    text-align: center; 
+    text-align: center;
 }
+
 .p23 {
     flex: 1;
 }
+
 .p23-infor {
     color: #ccc;
     padding-top: 5px;
 }
+
+
 /* footer */
 /* Container 2 */
