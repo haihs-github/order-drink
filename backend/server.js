@@ -11,6 +11,7 @@ const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const userRoutes = require("./routes/userRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
 
 dotenv.config();
 const app = express();
@@ -27,11 +28,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/users", userRoutes);
-
-// // Routes placeholder (bạn sẽ thêm sau)
-// app.get("/", (req, res) => {
-//   res.send("Welcome to Drink Order API!");
-// });
+app.use("/api/feedbacks", feedbackRoutes);
 
 // Kết nối MongoDB và khởi động server
 mongoose

@@ -14,6 +14,7 @@ async function fetchOrders() {
 		const res = await fetch("http://localhost:5000/api/orders");
 		if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 		const orders = await res.json();
+		console.log("orders", orders);
 		displayOrders(orders);
 	} catch (err) {
 		console.error("Failed to fetch orders:", err);
@@ -63,6 +64,8 @@ function displayOrders(orders) {
 		const total = row.insertCell();
 		const status = row.insertCell();
 		const action = row.insertCell();
+
+		console.log("order", order);
 
 		stt.textContent = index + 1;
 		fullname.textContent = order.fullname;
