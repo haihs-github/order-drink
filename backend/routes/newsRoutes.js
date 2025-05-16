@@ -14,7 +14,7 @@ router.get("/", newsController.getAllNews);
 router.get("/:id", newsController.getNewsById);
 
 // Cập nhật tin tức
-router.put("/:id", newsController.updateNews);
+router.put("/:id", upload.single('thumbnail'), newsController.updateNews);
 
 // Xoá tin tức
 router.delete("/:id", newsController.deleteNews);

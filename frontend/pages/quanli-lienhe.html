@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Lý</title>
+    <link rel="stylesheet" href="../assets/css/htql-lienhe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+</head>
+
+<body>
+    <!-- Thanh header -->
+    <header class="header">
+        <div class="logo">
+            <span>&#9776; He Thong QuanLy</span>
+        </div>
+        <div class="admin">
+            <span>&#128100; ADMIN</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="http://127.0.0.1:5500/quanli-sanpham.html">📂 Quản lý sản phẩm</a></li>
+                <li><a href="http://127.0.0.1:5500/quanli-donhang.html">📦 Quản lý đơn hàng</a></li>
+                <li><a href="http://127.0.0.1:5500/quanli-khachhang.html">👥 Quản lý khách hàng</a></li>
+                <li><a href="http://127.0.0.1:5500/quanli-taikhoan.html">🔑 Quản lý tài khoản</a></li>
+                <li><a href="http://127.0.0.1:5500/quanli-tintuc.html">🔑 Quản lý tin tức</a></li>
+            </ul>
+        </aside>
+
+        <!-- Khu vực chính -->
+        <main class="main-content">
+            <h2>QUẢN LÍ LIÊN HỆ</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên khách hàng</th>
+                        <th>Tên tài khoản</th>
+                        <th>Liên hệ</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <tr>
+                        <td>Nguyễn Văn A</td>
+                        <td>nguyenvana</td>
+                        <td>Gọi lại giúp tôi sau 5 giờ chiều. Tôi muốn hỏi thêm về sản phẩm nước ép trái cây.</td>
+                    </tr>
+                    <tr>
+                        <td>Trần Thị B</td>
+                        <td>tranthib</td>
+                        <td>Tôi không thể đăng nhập vào tài khoản, vui lòng hỗ trợ sớm nhất có thể.</td>
+                    </tr>
+                    <tr>
+                        <td>Lê Văn C</td>
+                        <td>levanc</td>
+                        <td>Cho tôi xin thông tin chi tiết hơn về chương trình khuyến mãi tháng này.</td>
+                    </tr>
+                    <tr>
+                        <td>Phạm Thị D</td>
+                        <td>phamthid</td>
+                        <td>Tôi đã đặt hàng nhưng không nhận được email xác nhận. Xin kiểm tra giúp tôi.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -3,10 +3,12 @@ const News = require("../models/News");
 // Thêm tin tức mới
 exports.createNews = async (req, res) => {
 	try {
-		const { type, title, header, content } = req.body;
-		const thumbnailFile = req.file; // từ multer (đã upload cloudinary)
+		const { type, title, header, content, thumbnail } = req.body;
+		// const thumbnailFile = req.file; // từ multer (đã upload cloudinary)
+		const thumbnailpath = req.file?.path || thumbnail;
 
-		if (!type || !title || !thumbnailFile) {
+		if (!type || !title || !thumbnailpath) {
+			console.log("Thiếu thông tin bắt buộc", thumbnail);
 			return res.status(400).json({ message: "Thiếu thông tin bắt buộc" });
 		}
 
@@ -15,12 +17,15 @@ exports.createNews = async (req, res) => {
 			title,
 			header,
 			content,
-			thumbnail: thumbnailFile.path, // đường dẫn ảnh cloudinary
+			thumbnail: thumbnailpath, // Đường dẫn đến ảnh đã upload
 		});
+
+
 
 		const savedNews = await newNews.save();
 		res.status(201).json(savedNews);
 	} catch (error) {
+		console.error("Lỗi khi tạo tin tức:", error);
 		res.status(500).json({ message: "Tạo tin tức thất bại", error });
 	}
 };
@@ -49,9 +54,29 @@ exports.getNewsById = async (req, res) => {
 // Cập nhật tin tức
 exports.updateNews = async (req, res) => {
 	try {
+		const { type, title, header, content, thumbnail } = req.body;
+
+		// Dùng ảnh mới nếu có upload, nếu không dùng ảnh cũ từ body
+		const thumbnailpath = req.file?.path || thumbnail;
+
+		// Kiểm tra bắt buộc
+		if (!type || !title || !thumbnailpath) {
+			return res.status(400).json({ message: "Thiếu thông tin bắt buộc" });
+		}
+
+		// Tạo object chứa dữ liệu cần cập nhật
+		const updatedFields = {
+			type,
+			title,
+			header,
+			content,
+			thumbnail: thumbnailpath,
+		};
+
+		// Cập nhật bản ghi
 		const updatedNews = await News.findByIdAndUpdate(
 			req.params.id,
-			req.body,
+			updatedFields,
 			{ new: true }
 		);
 
@@ -61,9 +86,11 @@ exports.updateNews = async (req, res) => {
 
 		res.status(200).json(updatedNews);
 	} catch (error) {
+		console.error("Lỗi khi cập nhật tin tức:", error);
 		res.status(500).json({ message: "Cập nhật tin tức thất bại", error });
 	}
 };
+
 
 // Xóa tin tức
 exports.deleteNews = async (req, res) => {
