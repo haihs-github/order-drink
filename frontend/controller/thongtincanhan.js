@@ -1,17 +1,6 @@
 
-const items = document.querySelectorAll('.diachi-item');
-const mapIframe = document.querySelector('.khungmap iframe');
-
-items.forEach(item => {
-	item.addEventListener('click', () => {
-		const newSrc = item.getAttribute('data-src');
-		mapIframe.setAttribute('src', newSrc);
-	});
-});
-
 // check login
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
 	const loginButtonsDiv = document.getElementById('login-buttons');
 	const userInfoDiv = document.getElementById('user-info');
 	const usernameDisplaySpan = document.getElementById('username-display');
@@ -45,6 +34,26 @@ document.addEventListener('DOMContentLoaded', function () {
 				// Chuyển hướng đến trang cá nhân
 				window.location.href = 'thongtincanhan.html';
 			}
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
 			userInfoDiv.style.display = 'flex'; // Sử dụng flex để các phần tử nằm trên cùng một dòng
 			userInfoDiv.style.alignItems = 'center'; // Căn giữa theo chiều dọc
 		} else {
@@ -70,17 +79,52 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Chuyển hướng người dùng về trang đăng nhập (tùy chọn)
 		window.location.href = 'dangnhap.html';
 	});
+
+	// load thông tin cá nhân
+	const authToken = localStorage.getItem('authToken');
+	const data = decodeJwt(authToken)
+	const user = await fetch(`http://localhost:5000/api/users/${data.userId}`)
+		.then(res => {
+			if (!res.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return res.json();
+		})
+		.then(data => {
+			console.log("user", data)
+			return data;
+		}).catch(error => {
+			console.error('Error fetching user data:', error);
+		})
+	console.log("user", user)
+	// render thông tin cá nhân
+	const usertable = document.getElementById('profile-container');
+	console.log("usertable", usertable)
+	usertable.innerHTML = ``;
+	usertable.innerHTML = `<h2>Thông Tin Cá Nhân</h2>
+                <div class="info-group">
+                    <label>Họ tên:</label>
+                    <p>${user.fullname}</p>
+                </div>
+
+                <div class="info-group">
+                    <label>Tên tài khoản:</label>
+                    <p>${user.username}</p>
+                </div>
+
+                <div class="info-group">
+                    <label>Email:</label>
+                    <p>${user.email}</p>
+                </div>
+
+                <div class="info-group">
+                    <label>Số điện thoại:</label>
+                    <p>${user.phone_number}</p>
+                </div>
+
+                <div class="info-group">
+                    <label>Địa chỉ:</label>
+                    <p>${user.address}</p>
+                </div>`
 });
-
-// scipt phần khuyến mãi
-
-function closePopup() {
-	document.getElementById("popup-overlay").style.display = "none";
-}
-
-// Tự động hiện popup khi trang vừa tải xong
-window.addEventListener("load", function () {
-	document.getElementById("popup-overlay").style.display = "flex";
-});
-
 

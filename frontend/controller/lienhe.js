@@ -42,6 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			loginButtonsDiv.style.display = 'none';
 			// Hiển thị thông tin người dùng và nút đăng xuất
 			usernameDisplaySpan.textContent = loggedInUsername;
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
+			usernameDisplaySpan.onclick = function () {
+				// Chuyển hướng đến trang cá nhân
+				window.location.href = 'thongtincanhan.html';
+			}
 			userInfoDiv.style.display = 'flex'; // Sử dụng flex để các phần tử nằm trên cùng một dòng
 			userInfoDiv.style.alignItems = 'center'; // Căn giữa theo chiều dọc
 		} else {
