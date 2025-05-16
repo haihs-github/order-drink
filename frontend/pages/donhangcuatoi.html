@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Band</title>
     <link rel="stylesheet" href="../assets/css/donhangcuatoi.css">
+    <link rel="stylesheet" href="../assets/css/quanlidonhang.css">
+    <link rel="stylesheet" href="../assets/css/htql2.css" />
+    <link rel="stylesheet" href="../assets/css/trangchu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,77 +35,48 @@
                 <div class="t3-nav-item"><a href="#">LIÊN HỆ</a></div>
                 <div class="t3-nav-item"><a href="hethongcuahang.html">HỆ THỐNG CỬA HÀNG</a></div>
             </div>
-            <div class="a1">
-                <div class="t3-admin">
-                    <div class="t3-admin-box">
-
-
-                    </div>
+            <div class="t1-trong">
+            </div>
+            <div class="t1-search-login">
+                <div class="t1-timkiem">
+                    <i style="color: white; margin-right: 10px;" class="fa-solid fa-magnifying-glass"></i>
+                    <input class="t1-timkiem1" type="text" placeholder="Tìm kiếm">
                 </div>
-                <div class="dangxuat">
-                    <button class="t1-dangxuat t1-nut-hover">Đăng Xuất</button>
+                <div id="login-buttons">
+                    <button onclick="window.location.href='dangnhap.html'" class="t1-dangnhap t1-nut-hover">Đăng
+                        Nhập</button>
+                    <button onclick="window.location.href='dangki.html'" class="t1-dangki t1-nut-hover">Đăng Ký</button>
+                </div>
+                <div id="user-info" style="display: none;">
+                    <button class="t1-dangnhap" id="username-display"></button>
+                    <button id="logout-button" class="t1-dangki t1-nut-hover">Đăng xuất</button>
                 </div>
             </div>
 
         </div>
         <div class="t5-body">
             <div class="container py-5">
-                <div class="row">
-                    <div class="col-7">
+                <div class="col">
+                    <div class="">
                         <div class="order-summary">
                             <h2>Đơn hàng</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Chi tiết</th>
+                                        <th>Thành tiền</th>
+                                        <th>trạng thái</th>
+                                        <th>Cập nhật gần nhất</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="product-list">
 
-                            <!-- Container for order items -->
-                            <div class="order-items-container"></div>
-
-                            <div class="total-section">
-                                <p><span>Số tiền</span> <span>0 VNĐ</span></p>
-                                <p><span>Phí vận chuyển</span> <span>0 VNĐ</span></p>
-                                <p><span>Hình thức thanh toán:</span> <span>Thanh toán khi nhận hàng</span></p>
-                                <p><strong>Tổng thanh toán:</strong> <strong>0 VNĐ</strong></p>
-                            </div>
-                            <div class="checkout-actions">
-                                <button type="button" class="btn btn-danger">Hủy đặt hàng</button>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div class="tracking-list">
-
-                            <!-- 1. Đang chờ xử lý -->
-                            <div class="tracking-item">
-                                <div class="tracking-icon status-waiting"></div>
-                                <div class="tracking-content">Đang chờ xử lý<span>12/05/2025, 08:00</span></div>
-                            </div>
-
-                            <!-- 2. Đã xác nhận -->
-                            <div class="tracking-item">
-                                <div class="tracking-icon status-confirmed"></div>
-                                <div class="tracking-content">Đã xác nhận<span>12/05/2025, 08:30</span></div>
-                            </div>
-
-                            <!-- 3. Đang giao -->
-                            <div class="tracking-item">
-                                <div class="tracking-icon status-shipping"></div>
-                                <div class="tracking-content">Đang giao<span>12/05/2025, 09:00</span></div>
-                            </div>
-
-                            <!-- 4. Đã giao -->
-                            <div class="tracking-item">
-                                <div class="tracking-icon status-delivered"></div>
-                                <div class="tracking-content">Đã giao<span>12/05/2025, 10:00</span></div>
-                            </div>
-
-                            <!-- 5. Đã hủy -->
-                            <!-- Nếu đơn bị hủy, bạn có thể chỉ hiển thị mục này hoặc thêm class "canceled" -->
-                            <div class="tracking-item canceled">
-                                <div class="tracking-icon status-canceled"></div>
-                                <div class="tracking-content">Đã hủy<span>12/05/2025, 10:15</span></div>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -225,18 +199,45 @@
 
             </div>
         </div>
-        <script>
-            const items = document.querySelectorAll('.diachi-item');
-            const mapIframe = document.querySelector('.khungmap iframe');
+        <div id="orderDetailModal" class="modal">
 
-            items.forEach(item => {
-                item.addEventListener('click', () => {
-                    const newSrc = item.getAttribute('data-src');
-                    mapIframe.setAttribute('src', newSrc);
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Chi tiết đơn hàng</h2>
+                    <span class="close-button">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <table id="order-details-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button class="edit-button">Sửa đơn hàng</button> -->
+                    <button class="cancel-button">Hủy</button>
+                </div>
+            </div>
+            <script>
+                const items = document.querySelectorAll('.diachi-item');
+                const mapIframe = document.querySelector('.khungmap iframe');
+
+                items.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const newSrc = item.getAttribute('data-src');
+                        mapIframe.setAttribute('src', newSrc);
+                    });
                 });
-            });
-        </script>
-    </div>
+            </script>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -247,6 +248,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+    <script src="../controller/donhangcuatoi.js"></script>
 </body>
 
 </html>

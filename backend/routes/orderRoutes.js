@@ -6,8 +6,10 @@ const orderDetailController = require('../controllers/OrderDetailController');
 // Routes cho Order
 router.get('', orderController.getAllOrders);
 router.get('/:id', orderController.getOrderById);
+router.get('/customer/:id', orderController.getOrderBycustomerId);
 router.post('', orderController.createOrder);
 router.put('/:id', orderController.updateOrder);
+router.put('/cancel/:id', orderController.cancelOrder);
 router.delete('/:id', orderController.deleteOrder);
 
 // // Routes cho OrderDetail
