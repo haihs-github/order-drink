@@ -158,6 +158,7 @@ function handleEdit(button, row, order) {
 	address.contentEditable = "true";
 	phone.contentEditable = "true";
 	content.contentEditable = "true";
+	total.contentEditable = "true";
 
 	const statusSelect = document.createElement("select");
 	statusSelect.innerHTML = `
@@ -218,11 +219,11 @@ cancelButton.onclick = () => {
 	orderDetailModal.style.display = "none";
 };
 
-editButton.onclick = () => {
-	if (!currentOrderId) {
-		alert("Không có đơn hàng nào được chọn để sửa.");
-	}
-};
+// editButton.onclick = () => {
+// 	if (!currentOrderId) {
+// 		alert("Không có đơn hàng nào được chọn để sửa.");
+// 	}
+// };
 
 // ======================= INIT ===========================
 fetchOrders();
