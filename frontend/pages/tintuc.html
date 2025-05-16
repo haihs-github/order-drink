@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Band</title>
     <link rel="stylesheet" href="../assets/css/tintuc.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/trangchu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
 
 </head>
+
 <body>
     <div id="main">
         <div id="t3-header">
@@ -16,27 +21,29 @@
                 <img src="../assets/img/logo.png" alt="" class="t3-logo-quan">
             </div>
             <div class="t3-nav">
-                <div class="t3-nav-item"><a href="trangchu.html">TRANG CHỦ</a></div>
                 <div class="t3-nav-item"><a href="gioithieu.html">GIỚI THIỆU</a></div>
                 <div class="t3-nav-item"><a href="sanpham.html">SẢN PHẨM</a></div>
                 <div class="t3-nav-item"><a href="#">TIN TỨC</a></div>
                 <div class="t3-nav-item"><a href="lienhe.html">LIÊN HỆ</a></div>
                 <div class="t3-nav-item"><a href="hethongcuahang.html">HỆ THỐNG CỬA HÀNG</a></div>
             </div>
-            <div class="a1">
-                <div class="t3-admin">
-                    <div class="t3-admin-box">
-                        <div class="t3-admin-icon">
-                            <i class="fa-solid fa-circle-user"></i>
-                        </div>
-                        <p class="t3-admin-name">Admin</p>
-                    </div>
+            <div class="t1-trong">
+            </div>
+            <div class="t1-search-login">
+                <div class="t1-timkiem">
+                    <i style="color: white; margin-right: 10px;" class="fa-solid fa-magnifying-glass"></i>
+                    <input class="t1-timkiem1" type="text" placeholder="Tìm kiếm">
                 </div>
-                <div class="dangxuat">
-                    <button class="t1-dangxuat t1-nut-hover">Đăng Xuất</button>
+                <div id="login-buttons">
+                    <button onclick="window.location.href='dangnhap.html'" class="t1-dangnhap t1-nut-hover">Đăng
+                        Nhập</button>
+                    <button onclick="window.location.href='dangki.html'" class="t1-dangki t1-nut-hover">Đăng Ký</button>
+                </div>
+                <div id="user-info" style="display: none;">
+                    <button class="t1-dangnhap" id="username-display"></button>
+                    <button id="logout-button" class="t1-dangki t1-nut-hover">Đăng xuất</button>
                 </div>
             </div>
-            
         </div>
 
         <div id="t4-body">
@@ -47,142 +54,27 @@
                         <li class="t4-danhmuc-item">
                             <a href="#cauchuyen" class="t4-cauchuyen t4-chung">CÂU CHUYỆN THƯƠNG HIỆU</a>
                         </li>
-                        <li class="t4-danhmuc-item ">                  
-                            <a href="#khuyenmai" class="t4-tintuckmai t4-chung">TIN TỨC KHUYẾN MÃI</a>                   
+                        <li class="t4-danhmuc-item ">
+                            <a href="#khuyenmai" class="t4-tintuckmai t4-chung">TIN TỨC KHUYẾN MÃI</a>
                         </li>
                         <li class="t4-danhmuc-item">
-                           <a href="#sukien" class="t4-sukien t4-chung">SỰ KIỆN</a>
+                            <a href="#sukien" class="t4-sukien t4-chung">SỰ KIỆN</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="t4-tintuc">
                 <div id="cauchuyen" class="tintuc-item">
-                    <h2 class="cauchuyen-header content-header">CÂU CHUYỆN THƯƠNG HIỆU</h2>
-                    <div class="news-item">
-                        <h3>Combo rẻ vô địch bánh tráng cay xé</h3>
-                        <img src="https://tocotocotea.com/wp-content/uploads/2024/08/Hinh-1-3.jpg" alt="" class="item-img">
-                        <p class="content-header-small">Combo rẻ vô địch bánh tráng cay xé kết hợp với trà sữa, trà cái cây ở ToCoToCo có gì hot?</p>
-                        <div class="full-content" id="content1">
-                            <p>Giữa nhịp sống hối hả của thành phố, Phố Mới Café ra đời với mong muốn mang đến một không gian bình yên, nơi mọi người có thể tạm gác lại những bộn bề để tận hưởng khoảnh khắc thư thái bên tách cà phê thơm nồng.
-
-                                Xuất phát từ niềm đam mê với hương vị nguyên bản của cà phê Việt, Phố Mới chọn những hạt cà phê chất lượng nhất từ vùng cao nguyên, rang xay thủ công để giữ trọn vị đậm đà. Không chỉ dừng lại ở thức uống, quán còn tạo nên một không gian ấm cúng, hoài cổ với những bản nhạc nhẹ nhàng, giúp khách hàng cảm nhận sự an nhiên giữa lòng đô thị nhộn nhịp.
-                            </p>
-                        </div>
-                        <button class="btn" onclick="toggleContent('content1', this)">Xem thêm</button>
-                    </div>
-                
-                    <div class="news-item">
-                        <h3>Mềm Mọng Mượt - Peach Jelly nâng cấp mới</h3>
-                        <img src="https://tocotocotea.com/wp-content/uploads/2024/12/Hinh-1-16.jpg" alt="" class="item-img">
-
-                        <p class="content-header-small">Peach Jelly trở lại với phiên bản nâng cấp, mềm mượt hơn, hương vị thơm ngon hơn!</p>
-                        <div class="full-content" id="content2">
-                            <p>Giữa nhịp sống hối hả của thành phố, Phố Mới Café ra đời với mong muốn mang đến một không gian bình yên, nơi mọi người có thể tạm gác lại những bộn bề để tận hưởng khoảnh khắc thư thái bên tách cà phê thơm nồng.
-
-                                Xuất phát từ niềm đam mê với hương vị nguyên bản của cà phê Việt, Phố Mới chọn những hạt cà phê chất lượng nhất từ vùng cao nguyên, rang xay thủ công để giữ trọn vị đậm đà. Không chỉ dừng lại ở thức uống, quán còn tạo nên một không gian ấm cúng, hoài cổ với những bản nhạc nhẹ nhàng, giúp khách hàng cảm nhận sự an nhiên giữa lòng đô thị nhộn nhịp.</p>
-                        </div>
-                        <button class="btn" onclick="toggleContent('content2', this)">Xem thêm</button>
-                    </div>
-                    <!-- hàm khi oneclick vào xem thêm thì tin tức hiện ra -->
-                    <script>
-                        function toggleContent(id, button) {
-                            var content = document.getElementById(id);
-                            if (content.style.display === "none" || content.style.display === "") {
-                                content.style.display = "block";
-                                button.innerText = "Thu gọn";
-                            } else {
-                                content.style.display = "none";
-                                button.innerText = "Xem thêm";
-                            }
-                        }
-                    </script>
                 </div>
                 <div id="khuyenmai" class="tintuc-item">
-                    <h2 class="cauchuyen-header content-header">TIN TỨC KHUYẾN MÃI</h2>
-                    <div class="news-item">
-                        <h3>Combo rẻ vô địch bánh tráng cay xé</h3>
-                        <img src="https://tocotocotea.com/wp-content/uploads/2024/08/Hinh-1-3.jpg" alt="" class="item-img">
-                        <p class="content-header-small">Combo rẻ vô địch bánh tráng cay xé kết hợp với trà sữa, trà cái cây ở ToCoToCo có gì hot?</p>
-                        <div class="full-content" id="content3">
-                            <p>Giữa nhịp sống hối hả của thành phố, Phố Mới Café ra đời với mong muốn mang đến một không gian bình yên, nơi mọi người có thể tạm gác lại những bộn bề để tận hưởng khoảnh khắc thư thái bên tách cà phê thơm nồng.
 
-                                Xuất phát từ niềm đam mê với hương vị nguyên bản của cà phê Việt, Phố Mới chọn những hạt cà phê chất lượng nhất từ vùng cao nguyên, rang xay thủ công để giữ trọn vị đậm đà. Không chỉ dừng lại ở thức uống, quán còn tạo nên một không gian ấm cúng, hoài cổ với những bản nhạc nhẹ nhàng, giúp khách hàng cảm nhận sự an nhiên giữa lòng đô thị nhộn nhịp.
-                            </p>
-                        </div>
-                        <button class="btn" onclick="toggleContent('content3', this)">Xem thêm</button>
-                    </div>
-                
-                    <div class="news-item">
-                        <h3>Mềm Mọng Mượt - Peach Jelly nâng cấp mới</h3>
-                        <img src="https://tocotocotea.com/wp-content/uploads/2024/12/Hinh-1-16.jpg" alt="" class="item-img">
-
-                        <p class="content-header-small">Peach Jelly trở lại với phiên bản nâng cấp, mềm mượt hơn, hương vị thơm ngon hơn!</p>
-                        <div class="full-content" id="content4">
-                            <p>Giữa nhịp sống hối hả của thành phố, Phố Mới Café ra đời với mong muốn mang đến một không gian bình yên, nơi mọi người có thể tạm gác lại những bộn bề để tận hưởng khoảnh khắc thư thái bên tách cà phê thơm nồng.
-
-                                Xuất phát từ niềm đam mê với hương vị nguyên bản của cà phê Việt, Phố Mới chọn những hạt cà phê chất lượng nhất từ vùng cao nguyên, rang xay thủ công để giữ trọn vị đậm đà. Không chỉ dừng lại ở thức uống, quán còn tạo nên một không gian ấm cúng, hoài cổ với những bản nhạc nhẹ nhàng, giúp khách hàng cảm nhận sự an nhiên giữa lòng đô thị nhộn nhịp.</p>
-                        </div>
-                        <button class="btn" onclick="toggleContent('content4', this)">Xem thêm</button>
-                    </div>
-                    <!-- hàm khi oneclick vào xem thêm thì tin tức hiện ra -->
-                    <script>
-                        function toggleContent(id, button) {
-                            var content = document.getElementById(id);
-                            if (content.style.display === "none" || content.style.display === "") {
-                                content.style.display = "block";
-                                button.innerText = "Thu gọn";
-                            } else {
-                                content.style.display = "none";
-                                button.innerText = "Xem thêm";
-                            }
-                        }
-                    </script>
                 </div>
                 <div id="sukien" class="tintuc-item">
-                    <h2 class="cauchuyen-header content-header">SỰ KIỆN</h2>
-                    <div class="news-item">
-                        <h3>Combo rẻ vô địch bánh tráng cay xé</h3>
-                        <img src="https://tocotocotea.com/wp-content/uploads/2024/08/Hinh-1-3.jpg" alt="" class="item-img">
-                        <p class="content-header-small">Combo rẻ vô địch bánh tráng cay xé kết hợp với trà sữa, trà cái cây ở ToCoToCo có gì hot?</p>
-                        <div class="full-content" id="content5">
-                            <p>Giữa nhịp sống hối hả của thành phố, Phố Mới Café ra đời với mong muốn mang đến một không gian bình yên, nơi mọi người có thể tạm gác lại những bộn bề để tận hưởng khoảnh khắc thư thái bên tách cà phê thơm nồng.
 
-                                Xuất phát từ niềm đam mê với hương vị nguyên bản của cà phê Việt, Phố Mới chọn những hạt cà phê chất lượng nhất từ vùng cao nguyên, rang xay thủ công để giữ trọn vị đậm đà. Không chỉ dừng lại ở thức uống, quán còn tạo nên một không gian ấm cúng, hoài cổ với những bản nhạc nhẹ nhàng, giúp khách hàng cảm nhận sự an nhiên giữa lòng đô thị nhộn nhịp.
-                            </p>
-                        </div>
-                        <button class="btn" onclick="toggleContent('content5', this)">Xem thêm</button>
-                    </div>
-                
-                    <div class="news-item">
-                        <h3>Mềm Mọng Mượt - Peach Jelly nâng cấp mới</h3>
-                        <img src="https://tocotocotea.com/wp-content/uploads/2024/12/Hinh-1-16.jpg" alt="" class="item-img">
-
-                        <p class="content-header-small">Peach Jelly trở lại với phiên bản nâng cấp, mềm mượt hơn, hương vị thơm ngon hơn!</p>
-                        <div class="full-content" id="content6">
-                            <p>Giữa nhịp sống hối hả của thành phố, Phố Mới Café ra đời với mong muốn mang đến một không gian bình yên, nơi mọi người có thể tạm gác lại những bộn bề để tận hưởng khoảnh khắc thư thái bên tách cà phê thơm nồng.
-
-                                Xuất phát từ niềm đam mê với hương vị nguyên bản của cà phê Việt, Phố Mới chọn những hạt cà phê chất lượng nhất từ vùng cao nguyên, rang xay thủ công để giữ trọn vị đậm đà. Không chỉ dừng lại ở thức uống, quán còn tạo nên một không gian ấm cúng, hoài cổ với những bản nhạc nhẹ nhàng, giúp khách hàng cảm nhận sự an nhiên giữa lòng đô thị nhộn nhịp.</p>
-                        </div>
-                        <button class="btn" onclick="toggleContent('content6', this)">Xem thêm</button>
-                    </div>
-                    <!-- hàm khi oneclick vào xem thêm thì tin tức hiện ra -->
-                    <script>
-                        function toggleContent(id, button) {
-                            var content = document.getElementById(id);
-                            if (content.style.display === "none" || content.style.display === "") {
-                                content.style.display = "block";
-                                button.innerText = "Thu gọn";
-                            } else {
-                                content.style.display = "none";
-                                button.innerText = "Xem thêm";
-                            }
-                        }
-                    </script>
                 </div>
             </div>
         </div>
-        
+
         <div id="t1-footer">
             <div class="p1">
                 <div class="menu">
@@ -200,20 +92,22 @@
                     <h2 class="titlee">Liên kết với chúng tôi</h2>
                     <ul class="list-lienket">
                         <li class="lienket-item">
-                            <span class="ti-facebook"  style="color: white;"></span>
+                            <span class="ti-facebook" style="color: white;"></span>
                             <a href="https://www.facebook.com/nguyen.manh.dung.283177/">Facebook</a>
                         </li>
                         <li class="lienket-item">
-                            <span class="ti-instagram"  style="color: white;"></span>
+                            <span class="ti-instagram" style="color: white;"></span>
                             <a href="https://www.instagram.com/nmdung_3114/">Instagram</a>
                         </li>
                         <li class="lienket-item">
-                            <span class="ti-youtube"  style="color: white;"></span>
+                            <span class="ti-youtube" style="color: white;"></span>
                             <a href="https://www.youtube.com/@DungNguyen-ys7cl">Youtube</a>
                         </li>
                         <li class="lienket-item">
                             <span class="ti-email" style="color: white;"></span>
-                            <a href="https://myaccount.google.com/?hl=vi&utm_source=OGB&utm_medium=act&gar=WzEyMF0&nlr=1">gmail: manhdung2724@gmail.com</a>
+                            <a
+                                href="https://myaccount.google.com/?hl=vi&utm_source=OGB&utm_medium=act&gar=WzEyMF0&nlr=1">gmail:
+                                manhdung2724@gmail.com</a>
                         </li>
                     </ul>
 
@@ -221,7 +115,10 @@
                 <div class="map">
                     <div class="khungmap">
                         <h2 class="title-map">Google map</h2>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d14898.969029177668!2d105.79476479999998!3d21.0029664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zLA!5e0!3m2!1svi!2s!4v1744738471336!5m2!1svi!2s" width="100%" height="100%" style="border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d14898.969029177668!2d105.79476479999998!3d21.0029664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zLA!5e0!3m2!1svi!2s!4v1744738471336!5m2!1svi!2s"
+                            width="100%" height="100%" style="border-radius: 10px;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
                 </div>
@@ -229,44 +126,52 @@
                     <h2 class="titlee-dc">Hệ thống cửa hàng</h2>
                     <div class="dchi-cuthe">
                         <ul class="diachi-list">
-                            <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
                                 Trà Sữa ToCoToCo Thanh Xuân
                             </li>
-                            
-                            
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.91671232389!2d105.81229357503044!3d20.995975480645157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad2624f9202d%3A0xaeb77f2425a2c642!2sToco%20toco!5e0!3m2!1svi!2s!4v1744722152752!5m2!1svi!2s">
-                                   Trà Sữa ToCoToCo Thượng Đình
-                                    
-                                </li>
-                            
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6377741151164!2d105.7908376750308!3d21.00715228063678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aca8b1e8e9fb%3A0xa50a6c36b7820da9!2zVHLDoCBT4buvYSBUb0NvVG9DbyBCaWcgQyBUaMSDbmcgTG9uZw!5e0!3m2!1svi!2s!4v1744722194277!5m2!1svi!2s">
-                                    Trà Sữa ToCoToCo Big C Thăng Long
-                                    
-                                </li>
-                            
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
-                                    Trà Sữa ToCoToCo Nguyễn Quý Đức
-                                   
-                                </li>
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
-                                    Trà Sữa ToCoToCo Thành Công
-                                    
-                                </li>
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
-                                    Trà Sữa ToCoToCo Dương Đình Nghệ
-                                    
-                                </li>
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
-                                    Trà Sữa ToCoToCo Trần Duy Hưng
-                                    
-                                </li>
-                                <li class="diachi-item" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
-                                    Trà Sữa ToCoToCo Hàng Bông
-                                    
-                                </li>
-                                
-                            
-                            
+
+
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.91671232389!2d105.81229357503044!3d20.995975480645157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad2624f9202d%3A0xaeb77f2425a2c642!2sToco%20toco!5e0!3m2!1svi!2s!4v1744722152752!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Thượng Đình
+
+                            </li>
+
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6377741151164!2d105.7908376750308!3d21.00715228063678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aca8b1e8e9fb%3A0xa50a6c36b7820da9!2zVHLDoCBT4buvYSBUb0NvVG9DbyBCaWcgQyBUaMSDbmcgTG9uZw!5e0!3m2!1svi!2s!4v1744722194277!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Big C Thăng Long
+
+                            </li>
+
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Nguyễn Quý Đức
+
+                            </li>
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Thành Công
+
+                            </li>
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Dương Đình Nghệ
+
+                            </li>
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Trần Duy Hưng
+
+                            </li>
+                            <li class="diachi-item"
+                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.180603220392!2d105.79645487503025!3d20.985396380653157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad98a6e3139b%3A0xb5d65ac63927cf5a!2sTocotoco!5e0!3m2!1svi!2s!4v1744722386850!5m2!1svi!2s">
+                                Trà Sữa ToCoToCo Hàng Bông
+
+                            </li>
+
+
+
                         </ul>
                     </div>
                 </div>
@@ -277,8 +182,10 @@
                 </div>
                 <div class="p22">
                     <h3 style="padding-top: 5px;padding-bottom: 30px;">CÔNG TY CỔ PHẦN THƯƠNG MẠI JDD VIỆT NAM</h3>
-                    <p>Trụ sở chính: Ô số 02-NV26, Khu đô thị mới Bắc quốc lộ 32, Thị trấn Trạm Trôi, Huyện Hoài Đức, Hà Nội</p>
-                    <p>Giấy chứng nhận Đăng ký Kinh doanh số 0110596586 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp lần đầu ngày 10/01/2024</p>
+                    <p>Trụ sở chính: Ô số 02-NV26, Khu đô thị mới Bắc quốc lộ 32, Thị trấn Trạm Trôi, Huyện Hoài Đức, Hà
+                        Nội</p>
+                    <p>Giấy chứng nhận Đăng ký Kinh doanh số 0110596586 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp
+                        lần đầu ngày 10/01/2024</p>
                 </div>
                 <div class="p23">
                     <p class="p23-infor">Chúng tôi chỉ nhận thanh toán qua tiền mặt</p>
@@ -286,20 +193,9 @@
 
             </div>
         </div>
-        <script>
-            const items = document.querySelectorAll('.diachi-item');
-            const mapIframe = document.querySelector('.khungmap iframe');
-        
-            items.forEach(item => {
-                item.addEventListener('click', () => {
-                    const newSrc = item.getAttribute('data-src');
-                    mapIframe.setAttribute('src', newSrc);
-                });
-            });
-        </script>
+        <script src="../controller//tintuc.js"></script>
     </div>
     </div>
 </body>
+
 </html>
-
-

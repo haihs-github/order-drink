@@ -173,7 +173,7 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 		const products = await response.json();
-
+		console.log("products", products)
 		const productListContainer = document.querySelector(`#t3-${categoryId} .t3-trasua-list`);
 
 		if (productListContainer) {
@@ -199,6 +199,10 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 					price.classList.add('t3-ts-gia');
 					price.textContent = product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
+					const desc = document.createElement('p');
+					price.classList.add('t3-ts-desc');
+					price.textContent = product.description;
+
 					const cartIcon = document.createElement('div');
 					cartIcon.classList.add('t3-ts-iconn');
 					const icon = document.createElement('i');
@@ -209,6 +213,7 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 					productItem.appendChild(img);
 					productItem.appendChild(name);
 					productItem.appendChild(price);
+					productItem.appendChild(desc);
 					productItem.appendChild(cartIcon);
 
 					productListContainer.appendChild(productItem);
@@ -220,11 +225,12 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 						const img = item.querySelector(".t3-ts-img").src;
 						const name = item.querySelector(".t3-ts-name").innerText;
 						const price = item.querySelector(".t3-ts-gia").innerText;
-
+						const desc = item.querySelector(".t3-ts-desc").innerText;
+						console.log("item", item);
 						detailImg.src = img;
 						detailName.innerText = name;
 						detailPriceElem.innerText = price;
-						detailDesc.innerText = "Mô tả sản phẩm đang cập nhật...";
+						detailDesc.innerText = desc;
 
 						quantityInput.value = 1;
 						updateTotal();
