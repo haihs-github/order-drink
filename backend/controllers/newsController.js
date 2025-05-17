@@ -20,8 +20,6 @@ exports.createNews = async (req, res) => {
 			thumbnail: thumbnailpath, // Đường dẫn đến ảnh đã upload
 		});
 
-
-
 		const savedNews = await newNews.save();
 		res.status(201).json(savedNews);
 	} catch (error) {

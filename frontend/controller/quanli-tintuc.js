@@ -218,6 +218,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			alert("Không có sản phẩm nào");
 			return;
 		}
+
+		newsList.innerHTML = ''
+
 		newsList.forEach((news) => {
 			const newRow = document.createElement("tr");
 			newRow.innerHTML = `

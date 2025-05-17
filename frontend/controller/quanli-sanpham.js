@@ -1,80 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
 	const productList = document.getElementById("product-list");
 	const addProductButton = document.getElementById("add-product");
-	let productIdCounter = 1;
-	const adminToken = localStorage.getItem("authToken"); // Sử dụng localStorage để lưu trữ token
+	let productId = 1;
+	let isEditing = false;
 
-	// Hàm kiểm tra quyền admin và chuyển hướng nếu không phải admin
-	function checkAdminRole() {
-		if (!adminToken) {
-			alert(
-				"Bạn không có quyền truy cập trang này. Vui lòng đăng nhập với tài khoản quản trị."
-			);
-			window.location.href = "login.html"; // Chuyển đến trang đăng nhập
-			return false; // Ngăn chặn tải trang nếu không phải admin
-		}
+	// goi danh sach category
+	const categoryList = await fetch("http://localhost:5000/api/category")
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return res.json();
+		}).then((data) => {
+			return data;
+		}).catch((error) => {
+			alert("Có lỗi xảy ra khi tải dữ liệu");
+			console.error("Lỗi khi tải dữ liệu:", error);
+		})
 
-		return true; // Cho phép tải trang nếu là admin
-	}
-
-	// Kiểm tra quyền admin trước khi tải trang
-	if (!checkAdminRole()) {
-		return;
-	}
-
-	function renderProduct(product) {
-		const newRow = document.createElement("tr");
-		newRow.innerHTML = `
-              <td>${productIdCounter++}</td>
-              <td contenteditable="false" class="name">${product.title}</td>
-              <td contenteditable="false" class="category">${product.category_id ? product.category_id.name : "Chưa có"
-			}</td>
-              <td contenteditable="false" class="price">${product.price}</td>
-              <td contenteditable="false" class="discount">${product.discount
-			}</td>
-              <td contenteditable="false" class="description">${product.description
-			}</td>
-              <td><img src="${product.thumbnail || "img.png"}" alt="${product.title
-			}" width="50"></td>
-              <td>
-                  <button class="edit">Sửa</button>
-                  <button class="save" style="display: none;">Lưu</button>
-                  <button class="delete">Xóa</button>
-              </td>
-          `;
-		productList.appendChild(newRow);
-		addEventListeners(newRow, product._id);
-	}
+	console.log("Dữ liệu danh sách danh mục:", categoryList);
 
 	function addEventListeners(row, productId) {
 		const deleteButton = row.querySelector(".delete");
 		const editButton = row.querySelector(".edit");
 		const saveButton = row.querySelector(".save");
-		const nameCell = row.querySelector(".name");
-		const categoryCell = row.querySelector(".category");
-		const priceCell = row.querySelector(".price");
-		const discountCell = row.querySelector(".discount");
-		const descriptionCell = row.querySelector(".description");
-		const imageCell = row.querySelector("td:nth-child(7) img");
-		const imageInput = document.createElement("input");
-		imageInput.type = "file";
-		imageInput.accept = "image/*";
-		imageInput.style.display = "none";
 
-		row.querySelector("td:nth-child(7)").appendChild(imageInput);
-
-		imageInput.addEventListener("change", (event) => {
-			const file = event.target.files[0];
-			if (file) {
-				const reader = new FileReader();
-				reader.onload = (e) => {
-					imageCell.src = e.target.result;
-				};
-				reader.readAsDataURL(file);
-			}
-		});
-
-		deleteButton.addEventListener("click", function () {
+		deleteButton.addEventListener("click", async function () {
 			const confirmDelete = confirm(
 				"Bạn có chắc chắn muốn xóa sản phẩm này không?"
 			);
@@ -83,227 +34,248 @@ document.addEventListener("DOMContentLoaded", function () {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: `Bearer ${adminToken}`,
 					},
+				}).then((response) => {
+					if (!response.ok) {
+						throw new Error("Network response was not ok");
+					}
+					row.remove();
+					alert("Xóa sản phẩm thành công");
+					console.log("Sản phẩm đã được xóa:", productId);
+					fetchListProducts();
+					return response.json();
+				}).catch((error) => {
+					alert("Có lỗi xảy ra khi xóa sản phẩm");
+					console.error("Lỗi khi xóa sản phẩm:", error);
 				})
-					.then((response) => {
-						if (response.ok) {
-							row.remove();
-							alert("Sản phẩm đã được xóa.");
-						} else {
-							return response.json().then((data) => {
-								throw new Error(
-									`Lỗi xóa sản phẩm: ${data.message || "Có lỗi xảy ra."}`
-								);
-							});
-						}
-					})
-					.catch((error) => {
-						console.error("Lỗi khi gọi API xóa sản phẩm:", error);
-						alert(error.message || "Lỗi khi xóa sản phẩm."); // Hiển thị thông báo lỗi cho người dùng
-					});
 			}
 		});
 
 		editButton.addEventListener("click", function () {
-			nameCell.contentEditable = "true";
-			categoryCell.contentEditable = "true";
-			priceCell.contentEditable = "true";
-			discountCell.contentEditable = "true";
-			descriptionCell.contentEditable = "true";
-			imageInput.style.display = "block";
+			isEditing = true;
+
+			console.log("Sửa sản phẩm", productId);
+			row.style.backgroundColor = "#f0f0f0";
+			row.style.border = "2px solid #007bff";
+			const cells = row.querySelectorAll("td[contenteditable]");
+			cells.forEach((cell) => (cell.contentEditable = "true"));
 			editButton.style.display = "none";
 			saveButton.style.display = "inline-block";
+			const typeInput = row.querySelector('td[name="type"]');
+			console.log("typeinput", typeInput)
+			typeInput.innerHTML = `
+				<input list="drinks" id="drink" name="drink" placeholder="Nhập hoặc chọn...">
+				<datalist id="drinks">
+					${categoryList.map(category => `<option value="${category.name}">${category.name}</option>`).join('')}
+				</datalist>
+			`;
+			const imgBtn = row.querySelector('.custom-btn');
+			imgBtn.style.display = "inline-block";
 		});
 
-		saveButton.addEventListener("click", function () {
-			const updatedProductData = {
-				title: nameCell.textContent,
-				category: categoryCell.textContent,
-				price: parseInt(priceCell.textContent),
-				discount: parseInt(discountCell.textContent),
-				description: descriptionCell.textContent,
-			};
+		saveButton.addEventListener("click", async function () {
+			const cells = row.querySelectorAll("td[contenteditable]");
+			cells.forEach((cell) => (cell.contentEditable = "false"));
+
+			const productData = {}
+			cells.forEach((cell) => {
+				const cellName = cell.getAttribute("name");
+				if (cellName) {
+					productData[cellName] = cell.innerText;
+				}
+			});
+
+			const thumbnailcell = row.querySelector('td[name="thumbnail"]');
+			const thumbnailPreview = thumbnailcell.querySelector('img');
+
+			const thumbnailInput = row.querySelector('input[name="thumbnail"]');
+			productData.thumbnail = thumbnailInput.files[0] || thumbnailPreview.src;
+
+			const imgBtn = row.querySelector('.custom-btn');
+			const typeSelect = row.querySelector('input[name="category"]');
+			productData.category = typeSelect.value;
 
 			const formData = new FormData();
-			for (const key in updatedProductData) {
-				formData.append(key, updatedProductData[key]);
+			for (const key in productData) {
+				formData.append(key, productData[key]);
 			}
 
-			if (imageInput && imageInput.files[0]) {
-				formData.append("thumbnail", imageInput.files[0]);
-			}
-
-			fetch(`http://localhost:5000/api/products/${productId}`, {
-				method: "PUT",
-				body: formData,
-				headers: {
-					Authorization: `Bearer ${adminToken}`,
-				},
-			})
-				.then((response) => {
-					if (response.ok) {
+			// Cập nhật sản phẩm
+			if (isEditing) {
+				fetch(`http://localhost:5000/api/news/${productId}`, {
+					method: "PUT",
+					headers: {
+					},
+					body: formData,
+				})
+					.then((response) => {
+						if (!response.ok) {
+							throw new Error("Network response was not ok");
+						}
 						return response.json();
-					} else {
-						return response.json().then((data) => {
-							throw new Error(
-								`Lỗi cập nhật sản phẩm: ${data.message || "Có lỗi xảy ra."
-								}`
-							);
-						});
-					}
-				})
-				.then((updatedProduct) => {
-					alert("Thông tin sản phẩm đã được cập nhật.");
-					if (updatedProduct.thumbnail) {
-						imageCell.src = updatedProduct.thumbnail;
-					}
-					nameCell.contentEditable = "false";
-					categoryCell.contentEditable = "false";
-					priceCell.contentEditable = "false";
-					discountCell.contentEditable = "false";
-					descriptionCell.contentEditable = "false";
-					imageInput.style.display = "none";
-					saveButton.style.display = "none";
-					editButton.style.display = "inline-block";
+					})
+					.then((data) => {
+						saveButton.style.display = "none";
+						editButton.style.display = "inline-block";
+						typeSelect.style.display = "none";
+						imgBtn.style.display = "none";
+						isEditing = false;
+						row.style.backgroundColor = "";
+						row.style.border = "";
+						alert("Thông tin đã được lưu.");
+						console.log("Dữ liệu đã được gửi đến server:", data);
+					})
+					.catch((error) => {
+						alert("Có lỗi xảy ra khi lưu thông tin");
+						console.error("Lỗi khi gửi dữ liệu đến server:", error);
+					});
+			} else {
+				// tạo mới sản phẩm
 
+				fetch("http://localhost:5000/api/products", {
+					method: "POST",
+					headers: {
+					},
+					body: formData,
 				})
-				.catch((error) => {
-					console.error("Lỗi khi gọi API cập nhật sản phẩm:", error);
-					// alert("Lỗi khi cập nhật sản phẩm.22"); // Hiển thị thông báo lỗi
-				});
+					.then((response) => {
+						if (!response.ok) {
+							throw new Error("Network response was not ok");
+						}
+						return response.json();
+					})
+					.then((data) => {
+						saveButton.style.display = "none";
+						editButton.style.display = "inline-block";
+						typeSelect.style.display = "none";
+						imgBtn.style.display = "none";
+						alert("Thông tin đã được lưu.");
+						console.log("Dữ liệu đã được gửi đến server:", data);
+					})
+					.catch((error) => {
+						alert("Có lỗi xảy ra khi lưu thông tin");
+						console.error("Lỗi khi gửi dữ liệu đến server:", error);
+					});
+			}
+
 		});
 	}
 
 	addProductButton.addEventListener("click", function () {
 		const newRow = document.createElement("tr");
 		newRow.innerHTML = `
-              <td>${productIdCounter++}</td>
-              <td contenteditable="true" class="name">Nhập tên</td>
-              <td contenteditable="true" class="category">Nhập loại</td>
-              <td contenteditable="true" class="price">Nhập giá</td>
-              <td contenteditable="true" class="discount">giảm giá...</td>
-              <td contenteditable="true" class="description">Nhập mô tả</td>
-              <td><img src="img.png" alt="New" width="50"><input type="file" accept="image/*"></td>
-              <td>
-                  <button class="edit" style="display: none;">Sửa</button>
-                  <button class="save-new">Lưu Mới</button>
-                  <button class="delete">Xóa</button>
-              </td>
-          `;
+                    <td>${productId++}</td>
+					<td name="title" contenteditable="true">nhập tiêu đề</td>
+                    <td contenteditable="true">
+						<input list="drinks" id="category" name="category" placeholder="Thể loại...">
+						<datalist id="drinks">
+							${categoryList.map(category => `<option value="${category.name}">${category.name}</option>`).join('')}
+						</datalist>
+					</td>
+                    <td name="price" contenteditable="true">Nhập giá</td>
+                    <td name="discount" contenteditable="true">giảm giá</td>
+                    <td name="description" contenteditable="true">Mô tả sản phẩm</td>
+                    <td name="thumbnail">
+						<img id="preview-${productId}" src="" alt="Ảnh xem trước" style="width: 100%;height: 30px; display: block; object-fit: scale-down" />
+						<label for="thumbnail-${productId}" class="custom-btn">Chọn ảnh</label>
+						<input type="file" name="thumbnail" id="thumbnail-${productId}" accept="image/*" style="display: none;" />
+					</td>
+                    <td>
+                        <button class="edit" style="display:none;">Sửa</button>
+                        <button class="save"">Lưu</button>
+                        <button class="delete">Xóa</button>
+                    </td>
+                `;
+		//  preview ảnh 
 		productList.appendChild(newRow);
+		const input = document.getElementById(`thumbnail-${productId}`);
+		const preview = document.getElementById(`preview-${productId}`);
 
-		const saveNewButton = newRow.querySelector(".save-new");
-		const deleteNewButton = newRow.querySelector(".delete");
-		const nameCell = newRow.querySelector(".name");
-		const categoryCell = newRow.querySelector(".category");
-		const priceCell = newRow.querySelector(".price");
-		const discountCell = newRow.querySelector(".discount");
-		const descriptionCell = newRow.querySelector(".description");
-		const imageInput = newRow.querySelector('input[type="file"]');
-		const imageCell = newRow.querySelector("td:nth-child(7) img");
-
-		imageInput.addEventListener("change", (event) => {
-			const file = event.target.files[0];
+		input.addEventListener("change", function () {
+			const file = input.files[0];
 			if (file) {
 				const reader = new FileReader();
-				reader.onload = (e) => {
-					imageCell.src = e.target.result;
+				reader.onload = function (e) {
+					preview.src = e.target.result;
+					preview.style.display = "block";
 				};
 				reader.readAsDataURL(file);
 			}
 		});
-
-		saveNewButton.addEventListener("click", function () {
-			const newProductData = {
-				title: nameCell.textContent,
-				category: categoryCell.textContent,
-				price: parseInt(priceCell.textContent),
-				discount: parseInt(discountCell.textContent),
-				description: descriptionCell.textContent,
-			};
-
-			const formData = new FormData();
-			for (const key in newProductData) {
-				formData.append(key, newProductData[key]);
-			}
-
-			if (imageInput && imageInput.files[0]) {
-				formData.append("thumbnail", imageInput.files[0]);
-			}
-
-			fetch("http://localhost:5000/api/products", {
-				method: "POST",
-				body: formData,
-				headers: {
-					Authorization: `Bearer ${adminToken}`,
-				},
-			})
-				.then((response) => {
-					if (response.status === 201) {
-						return response.json();
-					} else {
-						return response.json().then((data) => {
-							throw new Error(
-								`Lỗi thêm sản phẩm: ${data.message || "Có lỗi xảy ra."}`
-							);
-						});
-					}
-				})
-				.then((newProduct) => {
-					alert("Sản phẩm đã được thêm thành công.");
-					productList.innerHTML = ""; // Clear the product list
-					productIdCounter = 1; // Reset the product counter
-					fetch("http://localhost:5000/api/products", {
-						headers: {
-							Authorization: `Bearer ${adminToken}`,
-						},
-					})
-						.then((response) => response.json())
-						.then((products) => {
-							const filteredProducts = products.filter(
-								(product) => !product.deleted
-							);
-							filteredProducts.forEach((product) =>
-								renderProduct(product)
-							);
-						})
-						.catch((error) => {
-							console.error("Lỗi khi gọi API lấy sản phẩm:", error);
-							alert("Không thể tải danh sách sản phẩm.");
-						});
-				})
-				.catch((error) => {
-					console.error("Lỗi khi gọi API thêm sản phẩm:", error);
-					alert(error.message || "Lỗi khi thêm sản phẩm."); // Hiển thị thông báo lỗi
-				});
-		});
-
-		deleteNewButton.addEventListener("click", function () {
-			const confirmDelete = confirm(
-				"Bạn có chắc chắn muốn xóa sản phẩm mới này không?"
-			);
-			if (confirmDelete) {
-				newRow.remove();
-			}
-		});
+		productList.appendChild(newRow);
+		addEventListeners(newRow);
 	});
 
-	// Fetch product list on page load
-	fetch("http://localhost:5000/api/products", {
-		headers: {
-			Authorization: `Bearer ${adminToken}`,
-		},
-	})
-		.then((response) => response.json())
-		.then((products) => {
-			const filteredProducts = products.filter(
-				(product) => !product.deleted
-			);
-			filteredProducts.forEach((product) => renderProduct(product));
+	async function fetchListProducts() {
+		productId = 1;
+		const productsList = await fetch("http://localhost:5000/api/products")
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error("fail to fetch");
+				}
+				return res.json();
+			})
+			.then((data) => {
+				return data;
+			})
+			.catch((error) => {
+				alert("Có lỗi xảy ra khi tải dữ liệu");
+				console.error("Lỗi khi tải dữ liệu:", error);
+			});
+
+		console.log("Dữ liệu sản phẩm:", productsList);
+
+		if (!productsList || productsList.length === 0) {
+			alert("Không có sản phẩm nào");
+			return;
+		}
+
+		productList.innerHTML = ''
+
+		productsList.forEach((product) => {
+			if (product.deleted) return;
+			const newRow = document.createElement("tr");
+			newRow.innerHTML = `
+                    <td>${productId++}</td>
+					<td name="title" contenteditable="false">${product.title}</td>
+                    <td contenteditable="false">
+						${product.category_id.name}
+					</td>
+                    <td name="price" contenteditable="false">${product.price}</td>
+                    <td name="discount" contenteditable="false">${product.discount}</td>
+                    <td name="description" contenteditable="false">${product.description}</td>
+                    <td name="thumbnail">
+						<img id="preview-${productId}" src="${product.thumbnail}" alt="Ảnh xem trước" style="width: 100%;height: 30px; display: block; object-fit: scale-down" />
+						<label for="thumbnail-${productId}" class="custom-btn" style="display: none;">Chọn ảnh</label>
+						<input type="file" name="thumbnail" id="thumbnail-${productId}" accept="image/*" style="display: none;" />
+					</td>
+                    <td>
+                        <button class="edit">Sửa</button>
+                        <button class="save" style="display:none;">Lưu</button>
+                        <button class="delete">Xóa</button>
+                    </td>
+                `;
+			//  preview ảnh 
+			productList.appendChild(newRow);
+			const input = document.getElementById(`thumbnail-${productId}`);
+			const preview = document.getElementById(`preview-${productId}`);
+
+			input.addEventListener("change", function () {
+				const file = input.files[0];
+				if (file) {
+					const reader = new FileReader();
+					reader.onload = function (e) {
+						preview.src = e.target.result;
+						preview.style.display = "block";
+					};
+					reader.readAsDataURL(file);
+				}
+			});
+			productList.appendChild(newRow);
+			addEventListeners(newRow, product._id);
 		})
-		.catch((error) => {
-			console.error("Lỗi khi gọi API lấy sản phẩm:", error);
-			alert("Không thể tải danh sách sản phẩm.");
-		});
+	}
+
+	fetchListProducts();
 });
+

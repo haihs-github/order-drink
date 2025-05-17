@@ -54,54 +54,44 @@ exports.getProductsByCategory = async (req, res) => {
 };
 
 // Thêm một sản phẩm mới
-exports.createProduct = [
-  upload.single("thumbnail"), // Sử dụng middleware multer trước controller
-  async (req, res) => {
-    try {
-      const { category, title, price, discount, description } = req.body;
-      if (!category?.trim() || !title?.trim() || !description?.trim()) {
-        return res
-          .status(400)
-          .json({ message: "Vui lòng nhập đầy đủ thông tin sản phẩm." });
-      }
-      const existingCategory = await Category.findOne({ name: category });
-      let categoryId;
+exports.createProduct = async (req, res) => {
+  try {
+    const { category, title, price, discount, description, thumbnail } = req.body;
+    const thumbnailpath = req.file?.path || thumbnail;
 
-      if (existingCategory) {
-        categoryId = existingCategory._id;
-      } else {
-        const newCategory = new Category({ name: category });
-        const savedCategory = await newCategory.save();
-        categoryId = savedCategory._id;
-      }
-
-      let thumbnailUrl = null;
-      if (req.file) {
-        // Tải file lên Cloudinary
-        const result = await cloudinary.uploader.upload(req.file.path);
-        thumbnailUrl = result.secure_url;
-
-        // Xóa file tạm sau khi tải lên Cloudinary
-        fs.unlinkSync(req.file.path);
-      }
-
-      const newProduct = new Product({
-        category_id: categoryId,
-        title: title,
-        price: price,
-        discount: discount,
-        thumbnail: thumbnailUrl, // Lưu URL từ Cloudinary
-        description: description,
-      });
-
-      const savedProduct = await newProduct.save();
-      res.status(201).json(savedProduct);
-    } catch (error) {
-      console.error("Lỗi khi tạo sản phẩm:", error);
-      res.status(400).json({ message: error.message });
+    if (!category?.trim() || !title?.trim() || !description?.trim() || !thumbnailpath) {
+      console.log(discount, category, title, description, thumbnailpath,)
+      return res
+        .status(400)
+        .json({ message: "Vui lòng nhập đầy đủ thông tin sản phẩm." });
     }
-  },
-];
+    const existingCategory = await Category.findOne({ name: category });
+    let categoryId;
+
+    if (existingCategory) {
+      categoryId = existingCategory._id;
+    } else {
+      const newCategory = new Category({ name: category });
+      const savedCategory = await newCategory.save();
+      categoryId = savedCategory._id;
+    }
+
+    const newProduct = new Product({
+      category_id: categoryId,
+      title: title,
+      price: price,
+      discount: discount,
+      thumbnail: thumbnailpath, // Lưu URL từ Cloudinary
+      description: description,
+    });
+
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error("Lỗi khi tạo sản phẩm:", error);
+    res.status(400).json({ message: error.message });
+  }
+};
 
 // Sửa một sản phẩm theo ID
 exports.updateProduct = [

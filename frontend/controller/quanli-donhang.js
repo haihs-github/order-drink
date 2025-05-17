@@ -7,6 +7,41 @@ const cancelButton = document.querySelector(".cancel-button");
 
 let currentOrderId = null;
 let isEditing = false;
+// ======================= auth ===========================
+const authToken = localStorage.getItem("authToken");
+
+function decodeJwt(token) {
+	try {
+		const base64Url = token.split('.')[1];
+		const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+		const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+		return JSON.parse(jsonPayload);
+	} catch (error) {
+		console.error("Lỗi giải mã token:", error);
+		return null;
+	}
+
+}
+function checkLoginStatus() {
+	if (authToken) {
+		const data = decodeJwt(authToken)
+		console.log("data", data)
+		if (data.role !== 'admin') {
+			alert("Bạn không có quyền truy cập vào trang này.");
+			document.innerHTML = "<h1>403 Forbidden</h1>";
+			window.location.href = 'dangnhap.html'
+			return
+		}
+	} else {
+		document.innerHTML = "<h1>403 Forbidden</h1>";
+		window.location.href = 'dangnhap.html'
+	}
+
+}
+checkLoginStatus()
+
 
 // ======================= FETCH ===========================
 async function fetchOrders() {
@@ -230,3 +265,4 @@ cancelButton.onclick = () => {
 
 // ======================= INIT ===========================
 fetchOrders();
+

@@ -179,7 +179,7 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 		const products = await response.json();
 		console.log("products", products)
 		const productListContainer = document.querySelector(`#t3-${categoryId} .t3-trasua-list`);
-
+		console.log("products", products)
 		if (productListContainer) {
 			productListContainer.innerHTML = '';
 
@@ -192,6 +192,9 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 
 					const img = document.createElement('img');
 					img.classList.add('t3-ts-img');
+					img.style.width = '90%';
+					img.style.height = '120px';
+					img.style.objectFit = 'cover';
 					img.src = product.thumbnail;
 					img.alt = product.title;
 
@@ -201,11 +204,11 @@ async function fetchAndDisplayProductsByCategory(categoryId) {
 
 					const price = document.createElement('p');
 					price.classList.add('t3-ts-gia');
-					price.textContent = product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+					price.textContent = product.price.toLocaleString('vi-VN') + 'đ';
 
 					const desc = document.createElement('p');
-					price.classList.add('t3-ts-desc');
-					price.textContent = product.description;
+					desc.classList.add('t3-ts-desc');
+					desc.textContent = product.description;
 
 					const cartIcon = document.createElement('div');
 					cartIcon.classList.add('t3-ts-iconn');
@@ -339,6 +342,7 @@ function updateCartTotal() {
 		total += price;
 	});
 	totalPriceElem1.innerText = total.toLocaleString("vi-VN") + "đ";
+	console.log("total", total);
 }
 
 function checkEmptyCart() {

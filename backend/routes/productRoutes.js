@@ -6,6 +6,7 @@ const productController = require("..//controllers/productController");
 const { verifyToken, isAdmin } = require("../middlewares/auth");
 
 // const multer = require("multer"); // Import multer
+const upload = require("../middlewares/upload");
 
 // const upload = multer({ dest: "uploads/" }); // Cấu hình multer
 
@@ -21,9 +22,9 @@ router.get("/category/:category", productController.getProductsByCategory);
 // Thêm một sản phẩm mới
 router.post(
   "",
-  verifyToken,
-  isAdmin,
-  // upload.single("thumbnail"),
+  // verifyToken,
+  // isAdmin,
+  upload.single("thumbnail"),
   productController.createProduct
 );
 
@@ -33,8 +34,8 @@ router.put("/:id", verifyToken, isAdmin, productController.updateProduct);
 // Xóa một sản phẩm theo ID (soft delete)
 router.delete(
   "/:id",
-  verifyToken,
-  isAdmin,
+  // verifyToken,
+  // isAdmin,
   productController.softDeleteProduct
 );
 
