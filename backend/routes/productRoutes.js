@@ -29,7 +29,11 @@ router.post(
 );
 
 // Sửa một sản phẩm theo ID
-router.put("/:id", verifyToken, isAdmin, productController.updateProduct);
+router.put("/:id",
+  // verifyToken, isAdmin,
+  upload.single("thumbnail"),
+  productController.updateProduct
+);
 
 // Xóa một sản phẩm theo ID (soft delete)
 router.delete(

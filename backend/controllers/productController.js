@@ -94,67 +94,61 @@ exports.createProduct = async (req, res) => {
 };
 
 // Sửa một sản phẩm theo ID
-exports.updateProduct = [
-  upload.single("thumbnail"), // Middleware để xử lý file tải lên
-  async (req, res) => {
-    try {
-      const { category, title, price, discount, description } = req.body;
-      if (
-        !category?.trim() ||
-        !title?.trim() ||
-        !price?.trim() ||
-        !discount?.trim() ||
-        !description?.trim()
-      ) {
-        return res
-          .status(400)
-          .json({ message: "Vui lòng nhập đầy đủ thông tin sản phẩm." });
-      }
-      const productId = req.params.id;
+exports.updateProduct = async (req, res) => {
+  try {
+    const { category, title, price, discount, description, thumbnail } = req.body;
 
-      // Kiểm tra xem sản phẩm có tồn tại không trước khi cập nhật.
-      const existingProduct = await Product.findById(productId);
-      if (!existingProduct) {
-        return res
-          .status(404)
-          .json({ message: "Không tìm thấy sản phẩm để cập nhật" });
-      }
+    // Dùng ảnh mới nếu có upload, nếu không dùng ảnh cũ từ body
+    const thumbnailpath = req.file?.path || thumbnail;
 
-      let thumbnailUrl = existingProduct.thumbnail; // Giữ nguyên URL cũ
-
-      if (req.file) {
-        // Nếu có file mới được tải lên, tải lên Cloudinary
-        const result = await cloudinary.uploader.upload(req.file.path);
-        thumbnailUrl = result.secure_url;
-        fs.unlinkSync(req.file.path);
-      }
-      // Nếu không có category trong req.body, giữ nguyên category cũ
-      const categoryId = category
-        ? (
-          (await Category.findOne({ name: category })) ||
-          (await new Category({ name: category }).save())
-        )._id
-        : existingProduct.category_id;
-      const updatedProduct = await Product.findByIdAndUpdate(
-        productId,
-        {
-          category_id: categoryId,
-          title: title,
-          price: price,
-          discount: discount,
-          thumbnail: thumbnailUrl, // Sử dụng URL mới hoặc cũ
-          description: description,
-        },
-        { new: true }
-      );
-
-      res.status(200).json(updatedProduct);
-    } catch (error) {
-      console.error("Lỗi khi cập nhật sản phẩm:", error);
-      res.status(400).json({ message: error.message });
+    if (
+      !category?.trim() ||
+      !title?.trim() ||
+      !price?.trim() ||
+      !discount?.trim() ||
+      !description?.trim() ||
+      !thumbnailpath
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Vui lòng nhập đầy đủ thông tin sản phẩm." });
     }
-  },
-];
+    const productId = req.params.id;
+
+    // Kiểm tra xem sản phẩm có tồn tại không trước khi cập nhật.
+    const existingProduct = await Product.findById(productId);
+    if (!existingProduct) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm để cập nhật" });
+    }
+
+    // Nếu không có category trong req.body, giữ nguyên category cũ
+    const categoryId = category
+      ? (
+        (await Category.findOne({ name: category })) ||
+        (await new Category({ name: category }).save())
+      )._id
+      : existingProduct.category_id;
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      {
+        category_id: categoryId,
+        title: title,
+        price: price,
+        discount: discount,
+        thumbnail: thumbnailpath, // Sử dụng URL mới hoặc cũ
+        description: description,
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.error("Lỗi khi cập nhật sản phẩm:", error);
+    res.status(400).json({ message: error.message });
+  }
+};
 
 // Xóa một sản phẩm theo ID (soft delete)
 exports.softDeleteProduct = async (req, res) => {

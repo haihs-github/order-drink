@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 	console.log("Dữ liệu danh sách danh mục:", categoryList);
 
-	function addEventListeners(row, productId) {
+	function addEventListeners(row, product_Id) {
 		const deleteButton = row.querySelector(".delete");
 		const editButton = row.querySelector(".edit");
 		const saveButton = row.querySelector(".save");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 				"Bạn có chắc chắn muốn xóa sản phẩm này không?"
 			);
 			if (confirmDelete) {
-				fetch(`http://localhost:5000/api/products/${productId}`, {
+				fetch(`http://localhost:5000/api/products/${product_Id}`, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json",
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 					}
 					row.remove();
 					alert("Xóa sản phẩm thành công");
-					console.log("Sản phẩm đã được xóa:", productId);
+					console.log("Sản phẩm đã được xóa:", product_Id);
 					fetchListProducts();
 					return response.json();
 				}).catch((error) => {
@@ -54,17 +54,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 		editButton.addEventListener("click", function () {
 			isEditing = true;
 
-			console.log("Sửa sản phẩm", productId);
+			console.log("Sửa sản phẩm", product_Id);
 			row.style.backgroundColor = "#f0f0f0";
 			row.style.border = "2px solid #007bff";
 			const cells = row.querySelectorAll("td[contenteditable]");
 			cells.forEach((cell) => (cell.contentEditable = "true"));
 			editButton.style.display = "none";
 			saveButton.style.display = "inline-block";
-			const typeInput = row.querySelector('td[name="type"]');
+			const typeInput = cells[1];
 			console.log("typeinput", typeInput)
 			typeInput.innerHTML = `
-				<input list="drinks" id="drink" name="drink" placeholder="Nhập hoặc chọn...">
+				<input list="drinks" id="category" name="category" placeholder="Thể loại...">
 				<datalist id="drinks">
 					${categoryList.map(category => `<option value="${category.name}">${category.name}</option>`).join('')}
 				</datalist>
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 		saveButton.addEventListener("click", async function () {
 			const cells = row.querySelectorAll("td[contenteditable]");
-			cells.forEach((cell) => (cell.contentEditable = "false"));
 
 			const productData = {}
 			cells.forEach((cell) => {
@@ -102,7 +101,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 			// Cập nhật sản phẩm
 			if (isEditing) {
-				fetch(`http://localhost:5000/api/news/${productId}`, {
+				alert("đang xử lý...")
+				await fetch(`http://localhost:5000/api/products/${product_Id}`, {
 					method: "PUT",
 					headers: {
 					},
@@ -122,7 +122,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 						isEditing = false;
 						row.style.backgroundColor = "";
 						row.style.border = "";
+						cells.forEach((cell) => (cell.contentEditable = "false"));
 						alert("Thông tin đã được lưu.");
+						fetchListProducts();
 						console.log("Dữ liệu đã được gửi đến server:", data);
 					})
 					.catch((error) => {
@@ -131,8 +133,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 					});
 			} else {
 				// tạo mới sản phẩm
-
-				fetch("http://localhost:5000/api/products", {
+				alert("đang xử lý...")
+				await fetch("http://localhost:5000/api/products", {
 					method: "POST",
 					headers: {
 					},
@@ -149,6 +151,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 						editButton.style.display = "inline-block";
 						typeSelect.style.display = "none";
 						imgBtn.style.display = "none";
+						fetchListProducts()
 						alert("Thông tin đã được lưu.");
 						console.log("Dữ liệu đã được gửi đến server:", data);
 					})
@@ -186,8 +189,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <button class="delete">Xóa</button>
                     </td>
                 `;
+
+		newRow.style.backgroundColor = "#f0f0f0";
+		newRow.style.border = "2px solid #007bff";
 		//  preview ảnh 
-		productList.appendChild(newRow);
+		productList.insertBefore(newRow, productList.firstChild);
 		const input = document.getElementById(`thumbnail-${productId}`);
 		const preview = document.getElementById(`preview-${productId}`);
 
