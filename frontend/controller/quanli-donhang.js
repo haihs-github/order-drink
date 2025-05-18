@@ -4,11 +4,20 @@ const orderDetailsTableBody = document.querySelector("#orderDetailModal table tb
 const closeButton = document.querySelector(".close-button");
 const editButton = document.querySelector(".edit-button");
 const cancelButton = document.querySelector(".cancel-button");
+const logoutBtn = document.getElementById('logout-btn')
 
 let currentOrderId = null;
 let isEditing = false;
 // ======================= auth ===========================
 const authToken = localStorage.getItem("authToken");
+
+logoutBtn.addEventListener('click', function () {
+	// Xóa token và thông tin người dùng khỏi Local Storage
+	localStorage.removeItem('authToken');
+	// Chuyển hướng người dùng về trang đăng nhập (tùy chọn)
+	window.location.href = 'dangnhap.html';
+});
+
 
 function decodeJwt(token) {
 	try {
@@ -46,7 +55,14 @@ checkLoginStatus()
 // ======================= FETCH ===========================
 async function fetchOrders() {
 	try {
-		const res = await fetch("http://localhost:5000/api/orders");
+		console.log('authtk', localStorage.getItem('authToken'))
+		const res = await fetch("http://localhost:5000/api/orders",
+			{
+				headers: {
+					"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+				}
+			}
+		);
 		if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 		const orders = await res.json();
 		console.log("orders", orders);
@@ -59,7 +75,11 @@ async function fetchOrders() {
 
 async function fetchOrderDetails(orderId) {
 	try {
-		const res = await fetch(`http://localhost:5000/api/orders/order-details/${orderId}`);
+		const res = await fetch(`http://localhost:5000/api/orders/order-details/${orderId}`, {
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+			}
+		});
 		if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 		const details = await res.json();
 		displayOrderDetails(details);
@@ -71,7 +91,11 @@ async function fetchOrderDetails(orderId) {
 
 async function fetchProductName(productId) {
 	try {
-		const res = await fetch(`http://localhost:5000/api/products/${productId}`);
+		const res = await fetch(`http://localhost:5000/api/products/${productId}`, {
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+			}
+		});
 		if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 		const product = await res.json();
 		return product.title || "Không tìm thấy tên sản phẩm";
@@ -172,7 +196,10 @@ function handleDelete(orderId) {
 
 	fetch(`http://localhost:5000/api/orders/${orderId}`, {
 		method: "DELETE",
-		headers: { "Content-Type": "application/json" },
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+		},
 	})
 		.then(res => res.json())
 		.then(() => {
@@ -226,7 +253,10 @@ function handleEdit(button, row, order) {
 
 		fetch(`http://localhost:5000/api/orders/${order._id}`, {
 			method: "PUT",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+			},
 			body: JSON.stringify(updatedOrder),
 		})
 			.then(res => res.json())

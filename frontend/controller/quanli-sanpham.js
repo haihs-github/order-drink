@@ -1,6 +1,16 @@
 document.addEventListener("DOMContentLoaded", async function () {
 	const productList = document.getElementById("product-list");
 	const addProductButton = document.getElementById("add-product");
+	const logoutBtn = document.getElementById("logout-btn")
+
+	// xử lý nut logout
+	logoutBtn.addEventListener('click', function () {
+		// Xóa token và thông tin người dùng khỏi Local Storage
+		localStorage.removeItem('authToken');
+		// Chuyển hướng người dùng về trang đăng nhập (tùy chọn)
+		window.location.href = 'dangnhap.html';
+	});
+
 	let productId = 1;
 	let isEditing = false;
 
@@ -34,6 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json",
+						"Authorization": `Bearer ${localStorage.getItem('authToken')}`
 					},
 				}).then((response) => {
 					if (!response.ok) {
@@ -105,6 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 				await fetch(`http://localhost:5000/api/products/${product_Id}`, {
 					method: "PUT",
 					headers: {
+						"Authorization": `Bearer ${localStorage.getItem('authToken')}`
 					},
 					body: formData,
 				})
@@ -137,6 +149,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 				await fetch("http://localhost:5000/api/products", {
 					method: "POST",
 					headers: {
+						"Authorization": `Bearer ${localStorage.getItem('authToken')}`
 					},
 					body: formData,
 				})

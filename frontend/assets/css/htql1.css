@@ -46,11 +46,13 @@
 .sidebar .active {
     background: lightblue;
 }
-.sidebar a{
+
+.sidebar a {
     text-decoration: none;
     color: black;
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     text-decoration: underline;
     color: blue;
 }
@@ -68,7 +70,8 @@ table {
     margin-top: 10px;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;

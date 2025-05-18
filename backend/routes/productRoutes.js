@@ -22,15 +22,15 @@ router.get("/category/:category", productController.getProductsByCategory);
 // Thêm một sản phẩm mới
 router.post(
   "",
-  // verifyToken,
-  // isAdmin,
+  verifyToken,
+  isAdmin,
   upload.single("thumbnail"),
   productController.createProduct
 );
 
 // Sửa một sản phẩm theo ID
 router.put("/:id",
-  // verifyToken, isAdmin,
+  verifyToken, isAdmin,
   upload.single("thumbnail"),
   productController.updateProduct
 );
@@ -38,8 +38,8 @@ router.put("/:id",
 // Xóa một sản phẩm theo ID (soft delete)
 router.delete(
   "/:id",
-  // verifyToken,
-  // isAdmin,
+  verifyToken,
+  isAdmin,
   productController.softDeleteProduct
 );
 
