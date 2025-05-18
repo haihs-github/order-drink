@@ -75,12 +75,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	async function fetchOrders() {
-		// Lấy token từ Local Storage
 		const authToken = localStorage.getItem('authToken');
-		const user = decodeJwt(authToken);
-		console.log("api", `http://localhost:5000/api/orders/customer/${user.userId}`)
+		if (!authToken) {
+			alert("Bạn chưa đăng nhập.");
+			return;
+		}
+
+		let user;
 		try {
-			const res = await fetch(`http://localhost:5000/api/orders/customer/${user.userId}`, {
+			user = decodeJwt(authToken);
+			if (!user?.userId) throw new Error("Token không chứa userId");
+		} catch (error) {
+			console.error("Lỗi giải mã token:", error);
+			alert("Token không hợp lệ. Vui lòng đăng nhập lại.");
+			return;
+		}
+
+		const url = `http://localhost:5000/api/orders/customer/${user.userId}`;
+		console.log("Gọi API:", url);
+
+		try {
+			const res = await fetch(url, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -90,12 +105,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 			const orders = await res.json();
 			console.log("orders", orders);
+
 			displayOrders(orders);
 		} catch (err) {
 			console.error("Failed to fetch orders:", err);
 			orderList.innerHTML = `<tr><td colspan="7" class="error-message">Lỗi tải đơn hàng: ${err.message}</td></tr>`;
 		}
 	}
+
 
 	function displayOrders(orders) {
 		orderList.innerHTML = "";
@@ -134,15 +151,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	async function fetchOrderDetails(orderId) {
 		try {
-			const res = await fetch(`http://localhost:5000/api/orders/order-details/${orderId}`);
+			const authToken = localStorage.getItem('authToken');
+			const res = await fetch(`http://localhost:5000/api/orders/order-details/${orderId}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${authToken}`
+				}
+			});
 			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-			const details = await res.json();
-			displayOrderDetails(details);
+			const data = await res.json();
+			console.log("Chi tiết đơn hàng", data);
+			await displayOrderDetails(data);
 		} catch (err) {
 			console.error("Failed to fetch order details:", err);
-			alert("Không thể tải chi tiết đơn hàng.");
 		}
 	}
+
 
 	async function fetchProductName(productId) {
 		try {
@@ -195,12 +220,30 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (!confirm("Bạn có chắc chắn muốn hủy đơn hàng này không?")) return;
 
 		const authToken = localStorage.getItem('authToken');
-		const user = decodeJwt(authToken);
+		if (!authToken) {
+			alert("Không tìm thấy token đăng nhập.");
+			return;
+		}
+
+
+		let user;
+		try {
+			user = decodeJwt(authToken);
+			if (!user?.userId) throw new Error("Token không chứa userId");
+		} catch (error) {
+			console.error("Lỗi giải mã token:", error);
+			alert("Token không hợp lệ. Vui lòng đăng nhập lại.");
+			return;
+		}
+
 
 		fetch(`http://localhost:5000/api/orders/cancel/${orderId}`, {
 			method: "PUT",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ userId: user.userId }),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${authToken}`, // nếu API cần xác thực
+			},
+			body: JSON.stringify({ userId: user.userId }), // hoặc `user.id` tùy backend
 		})
 			.then(res => {
 				if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -208,10 +251,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 			.then(() => {
 				alert("Hủy đơn hàng thành công!");
-				fetchOrders();
+				fetchOrders(); // gọi lại API lấy danh sách đơn
 			})
 			.catch(err => {
-				console.error("cancel failed:", err);
+				console.error("Cancel failed:", err);
 				alert("Hủy đơn hàng thất bại.");
 			});
 	}

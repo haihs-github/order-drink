@@ -106,20 +106,61 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
 });
 // xử lí nút xác nhận đặt hàng
-document.querySelector('.btn-confirm-order').addEventListener('click', (e) => {
-	// e.preventDefault(); // Ngăn chặn form gửi đi theo cách thông thường
+document.querySelector('.btn-confirm-order').addEventListener('click', function (e) {
+	e.preventDefault(); // Ngăn form gửi tự động
 
-	// Lấy thông tin từ form thanh toán
-	const name = document.getElementById('name').value;
-	const phone = document.getElementById('phone').value;
-	const email = document.getElementById('email').value;
-	const address = document.getElementById('address').value;
-	const note = document.getElementById('note').value;
-	const cartData = JSON.parse(localStorage.getItem('cart')) || []
-	// lấy userid
+	// Lấy thông tin từ form
+	const nameInput = document.getElementById('name');
+	const phoneInput = document.getElementById('phone');
+	const emailInput = document.getElementById('email');
+	const addressInput = document.getElementById('address');
+	const noteInput = document.getElementById('note');
+
+	const name = nameInput.value.trim();
+	const phone = phoneInput.value.trim();
+	const email = emailInput.value.trim();
+	const address = addressInput.value.trim();
+	const note = noteInput.value.trim();
+
+	// Regex kiểm tra
+	const phoneRegex = /^(0|\+84)\d{9}$/;
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+	// Kiểm tra hợp lệ
+	if (!name) {
+		alert("Vui lòng nhập họ và tên.");
+		nameInput.focus();
+		return;
+	}
+
+	if (!phoneRegex.test(phone)) {
+		alert("Vui lòng nhập số điện thoại hợp lệ (VD: 0981234567).");
+		phoneInput.focus();
+		return;
+	}
+
+	if (!emailRegex.test(email)) {
+		alert("Vui lòng nhập email hợp lệ.");
+		emailInput.focus();
+		return;
+	}
+
+	if (!address) {
+		alert(" Vui lòng nhập địa chỉ giao hàng.");
+		addressInput.focus();
+		return;
+	}
+
+	// Kiểm tra đăng nhập
 	const authToken = localStorage.getItem('authToken');
-	let userId = null;
+	if (!authToken) {
+		alert('Bạn chưa đăng nhập. Vui lòng đăng nhập để đặt hàng.');
+		window.location.href = 'dangnhap.html';
+		return;
+	}
 
+	// Giải mã JWT
+	let userId = null;
 	function decodeJwt(token) {
 		try {
 			const base64Url = token.split('.')[1];
@@ -134,27 +175,21 @@ document.querySelector('.btn-confirm-order').addEventListener('click', (e) => {
 		}
 	}
 
-	if (authToken) {
-		try {
-			const tokenData = decodeJwt(authToken);
-			userId = tokenData.userId;
-		} catch (error) {
-			console.error("Error decoding authToken:", error);
-			return;
-		}
-	} else {
-		alert('Bạn chưa đăng nhập. Vui lòng đăng nhập để đặt hàng.');
-		window.location.href = 'dangnhap.html'; // Chuyển hướng đến trang đăng nhập
+	const tokenData = decodeJwt(authToken);
+	if (!tokenData || !tokenData.userId) {
+		alert('Lỗi xác thực. Vui lòng đăng nhập lại.');
+		return;
+	}
+	userId = tokenData.userId;
+
+	// Lấy giỏ hàng
+	const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+	if (cartData.length === 0) {
+		alert('Giỏ hàng của bạn đang trống.');
 		return;
 	}
 
-	// Kiểm tra xem các trường bắt buộc đã được điền chưa
-	if (!name || !phone || !address || !cartData) {
-		alert('Vui lòng điền đầy đủ thông tin bắt buộc.');
-		return; // Dừng việc gửi đơn hàng
-	}
-
-	// Tạo đối tượng chứa dữ liệu đơn hàng
+	// Tạo đơn hàng
 	const orderData = {
 		user_id: userId,
 		fullname: name,
@@ -163,42 +198,37 @@ document.querySelector('.btn-confirm-order').addEventListener('click', (e) => {
 		address: address,
 		content: note,
 		status: 'Đang chờ xử lý',
-		order_details: cartData, // Gửi cả thông tin sản phẩm trong giỏ hàng
+		order_details: cartData,
 	};
 
 	console.log('Order data:', orderData);
 
-	// Gửi dữ liệu đơn hàng lên server (sử dụng fetch hoặc XMLHttpRequest)
+	// Gửi đơn hàng
 	fetch('http://localhost:5000/api/orders', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+			'Authorization': `Bearer ${authToken}`
 		},
 		body: JSON.stringify(orderData)
 	})
 		.then(response => {
 			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
+				throw new Error(`Lỗi HTTP: ${response.status}`);
 			}
 			return response.json();
 		})
 		.then(data => {
-			// Xử lý phản hồi từ server (ví dụ: hiển thị thông báo thành công)
-			console.log('Order placed successfully:', data);
-			alert('Đặt hàng thành công!');
-
-			// Xóa giỏ hàng khỏi localStorage sau khi đặt hàng thành công
+			alert('🎉 Đặt hàng thành công!');
 			localStorage.removeItem('cart');
-			// Chuyển hướng người dùng đến trang khác (ví dụ: trang cảm ơn)
-			window.location.href = 'sanpham.html'; // Thay đổi đường dẫn nếu cần
+			window.location.href = 'sanpham.html';
 		})
 		.catch(error => {
-			// Xử lý lỗi (ví dụ: hiển thị thông báo lỗi cho người dùng)
-			console.error('Error placing order:', error);
-			alert('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại sau.');
+			console.error('Lỗi khi đặt hàng:', error);
+			alert('Có lỗi xảy ra khi gửi đơn hàng. Vui lòng thử lại sau.');
 		});
 });
+
 
 document.querySelector('.btn-cancel-order').addEventListener('click', () => {
 	// Thực hiện hành động hủy đặt hàng
