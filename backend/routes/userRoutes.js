@@ -6,7 +6,7 @@ const userController = require("../controllers/userController");
 const { verifyToken, isAdmin } = require("../middlewares/auth");
 
 // Lấy tất cả người dùng
-router.get("", userController.getAllUsers);
+router.get("", verifyToken, isAdmin, userController.getAllUsers);
 
 // Lấy một uer theo ID
 router.get("/:id", userController.getUserById);
@@ -17,16 +17,16 @@ router.get("/:id", userController.getUserById);
 // Sửa một sản phẩm theo ID
 router.put(
 	"/:id",
-	// verifyToken,
-	// isAdmin,
+	verifyToken,
+	isAdmin,
 	userController.updateUser
 );
 
 // Xóa một sản phẩm theo ID (soft delete)
 router.delete(
 	"/:id",
-	// verifyToken,
-	// isAdmin,
+	verifyToken,
+	isAdmin,
 	userController.softDeleteUser
 );
 

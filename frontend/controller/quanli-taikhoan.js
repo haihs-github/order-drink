@@ -1,8 +1,25 @@
 const userList = document.getElementById("user-list");
 let isEditing = false;
+
+const logoutBtn = document.getElementById('logout-btn')
+const authToken = localStorage.getItem("authToken");
+
+logoutBtn.addEventListener('click', function () {
+	// Xóa token và thông tin người dùng khỏi Local Storage
+	localStorage.removeItem('authToken');
+	// Chuyển hướng người dùng về trang đăng nhập (tùy chọn)
+	window.location.href = 'dangnhap.html';
+});
+
 async function fetchUsers() {
 	try {
-		const res = await fetch("http://localhost:5000/api/users");
+		const res = await fetch("http://localhost:5000/api/users",
+			{
+				headers: {
+					"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+				}
+			}
+		);
 		if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 		const users = await res.json();
 		displayUsers(users);
@@ -94,6 +111,7 @@ function handleEdit(user, row, editBtn, fullName, email, phone, address, usernam
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('authToken')}`
 			},
 			body: JSON.stringify(updatedUser),
 		})
@@ -117,6 +135,9 @@ function handleDelete(userId) {
 
 	fetch(`http://localhost:5000/api/users/${userId}`, {
 		method: "DELETE",
+		headers: {
+			"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+		}
 	})
 		.then((res) => {
 			if (!res.ok) throw new Error("Xóa thất bại");

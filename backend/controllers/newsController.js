@@ -3,21 +3,34 @@ const News = require("../models/News");
 // Thêm tin tức mới
 exports.createNews = async (req, res) => {
 	try {
-		const { type, title, header, content, thumbnail } = req.body;
-		// const thumbnailFile = req.file; // từ multer (đã upload cloudinary)
-		const thumbnailpath = req.file?.path || thumbnail;
-
-		if (!type || !title || !thumbnailpath) {
-			console.log("Thiếu thông tin bắt buộc", thumbnail);
-			return res.status(400).json({ message: "Thiếu thông tin bắt buộc" });
+		const { type, title, header, content } = req.body;
+		// req.file chứa thông tin về file đã tải lên
+		let thumbnailPath = '';
+		if (req.file) {
+			thumbnailPath = req.file.path; // Đường dẫn đến file đã lưu
 		}
 
+		// Kiểm tra các trường bắt buộc
+		function isEmpty(str) {
+			return !str || str.trim().length === 0;
+		}
+
+		if (
+			isEmpty(type) ||
+			isEmpty(title) ||
+			isEmpty(header) ||
+			isEmpty(content)
+		) {
+			return res.status(400).json({ message: "Vui lòng điền đầy đủ thông tin bắt buộc." });
+		}
+
+		// Tạo tin tức mới
 		const newNews = new News({
 			type,
 			title,
 			header,
 			content,
-			thumbnail: thumbnailpath, // Đường dẫn đến ảnh đã upload
+			thumbnail: thumbnailPath, // Lưu đường dẫn vào database
 		});
 
 		const savedNews = await newNews.save();
@@ -27,6 +40,8 @@ exports.createNews = async (req, res) => {
 		res.status(500).json({ message: "Tạo tin tức thất bại", error });
 	}
 };
+
+
 
 // Lấy tất cả tin tức
 exports.getAllNews = async (req, res) => {

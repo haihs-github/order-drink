@@ -1,6 +1,22 @@
 document.addEventListener("DOMContentLoaded", async function () {
+
+	const authToken = localStorage.getItem("authToken");
+	const logoutBtn = document.getElementById("logout-btn")
+	logoutBtn.addEventListener('click', function () {
+		// Xóa token và thông tin người dùng khỏi Local Storage
+		localStorage.removeItem('authToken');
+		// Chuyển hướng người dùng về trang đăng nhập (tùy chọn)
+		window.location.href = 'dangnhap.html';
+	});
+
 	//load feedbacks
-	const feedbacks = await fetch("http://localhost:5000/api/feedbacks")
+	const feedbacks = await fetch("http://localhost:5000/api/feedbacks",
+		{
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem('authToken')}`
+			}
+		}
+	)
 		.then((response) => {
 			if (!response.ok) {
 				console.error("Network response was not ok", error);
