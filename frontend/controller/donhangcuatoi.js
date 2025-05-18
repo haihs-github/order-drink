@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			loginButtonsDiv.style.display = 'flex';
 			// Ẩn thông tin người dùng và nút đăng xuất
 			userInfoDiv.style.display = 'none';
+			if (confirm("Vui lòng đăng nhập để xem thông tin đơn hàng")) {
+				window.location.href = "dangnhap.html"
+			} else {
+				window.history.back()
+			}
 		}
 	}
 
@@ -66,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	const orderDetailModal = document.getElementById("orderDetailModal");
 	const orderDetailsTableBody = document.querySelector("#orderDetailModal table tbody");
 	const closeButton = document.querySelector(".close-button");
-	const editButton = document.querySelector(".edit-button");
 	const cancelButton = document.querySelector(".cancel-button");
 
 
@@ -74,8 +78,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Lấy token từ Local Storage
 		const authToken = localStorage.getItem('authToken');
 		const user = decodeJwt(authToken);
+		console.log("api", `http://localhost:5000/api/orders/customer/${user.userId}`)
 		try {
-			const res = await fetch(`http://localhost:5000/api/orders/customer/${user.userId}`);
+			const res = await fetch(`http://localhost:5000/api/orders/customer/${user.userId}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${authToken}`
+				}
+			});
 			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 			const orders = await res.json();
 			console.log("orders", orders);

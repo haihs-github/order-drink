@@ -83,8 +83,9 @@ document.querySelector('.t5-lienhe-box1').addEventListener('submit', async funct
 	e.preventDefault(); // Ngăn form gửi theo cách mặc định
 	const authToken = localStorage.getItem('authToken');
 	if (!authToken) {
-		alert('Vui lòng đăng nhập để gửi phản hồi');
-		window.location.href = 'dangnhap.html';
+		if (confirm("Yêu cầu đăng nhập để phản hồi")) {
+			window.location.href = "dangnhap.html"
+		}
 		return;
 	}
 	const decodedToken = decodeJwt(authToken);
@@ -115,7 +116,8 @@ document.querySelector('.t5-lienhe-box1').addEventListener('submit', async funct
 		const response = await fetch('http://localhost:5000/api/feedbacks', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${authToken}`
 			},
 			body: JSON.stringify(data)
 		});

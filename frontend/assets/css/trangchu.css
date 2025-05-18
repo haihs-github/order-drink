@@ -47,14 +47,13 @@ html {
 .t1-nav {
     display: flex;
     justify-content: space-around;
-    flex: 4;
+    flex: 6;
 
 }
 
 .t1-nav-item {
     margin: auto;
-
-
+    padding-right: 10px;
 }
 
 .t1-nav-item a {
@@ -73,7 +72,7 @@ html {
 .t1-search-login {
     flex: 3;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 .t1-timkiem {

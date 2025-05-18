@@ -1,5 +1,4 @@
 // check login
-
 document.addEventListener('DOMContentLoaded', function () {
 	const loginButtonsDiv = document.getElementById('login-buttons');
 	const userInfoDiv = document.getElementById('user-info');
@@ -26,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			const data = decodeJwt(authToken)
 			console.log("data", data)
 			const loggedInUsername = data.username || 'Người dùng';
+			//protected routes
 			// Ẩn nút đăng nhập/đăng ký
 			loginButtonsDiv.style.display = 'none';
 			// Hiển thị thông tin người dùng và nút đăng xuất
@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			loginButtonsDiv.style.display = 'flex';
 			// Ẩn thông tin người dùng và nút đăng xuất
 			userInfoDiv.style.display = 'none';
+			if (confirm("Yêu cầu đăng nhập để đặt hàng")) {
+				window.location.href = "dangnhap.html"
+			} else {
+				window.history.back()
+			}
 		}
 	}
 
@@ -114,9 +119,24 @@ document.querySelector('.btn-confirm-order').addEventListener('click', (e) => {
 	// lấy userid
 	const authToken = localStorage.getItem('authToken');
 	let userId = null;
+
+	function decodeJwt(token) {
+		try {
+			const base64Url = token.split('.')[1];
+			const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+			const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+			}).join(''));
+			return JSON.parse(jsonPayload);
+		} catch (error) {
+			console.error("Lỗi giải mã token:", error);
+			return null;
+		}
+	}
+
 	if (authToken) {
 		try {
-			const tokenData = JSON.parse(atob(authToken.split('.')[1]));
+			const tokenData = decodeJwt(authToken);
 			userId = tokenData.userId;
 		} catch (error) {
 			console.error("Error decoding authToken:", error);
@@ -152,7 +172,8 @@ document.querySelector('.btn-confirm-order').addEventListener('click', (e) => {
 	fetch('http://localhost:5000/api/orders', {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${localStorage.getItem('authToken')}`
 		},
 		body: JSON.stringify(orderData)
 	})

@@ -9,6 +9,20 @@ items.forEach(item => {
 	});
 });
 
+function decodeJwt(token) {
+	try {
+		const base64Url = token.split('.')[1];
+		const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+		const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+		return JSON.parse(jsonPayload);
+	} catch (error) {
+		console.error("Lỗi giải mã token:", error);
+		return null;
+	}
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	const loginForm = document.getElementById('t5-lienhe-box1');
 
@@ -37,9 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
 					// Lưu token vào Local Storage
 					localStorage.setItem('authToken', responseData.token);
 					console.log('Token đã được lưu:', localStorage.getItem('authToken'));
-
+					const data = decodeJwt(localStorage.getItem('authToken'))
 					// Bạn có thể chuyển hướng người dùng đến trang chính sau khi đăng nhập
-					window.history.back()
+					if (data.role === 'admin') {
+						window.location.href = 'quanli-sanpham.html'
+					} else {
+						window.location.href = 'trangchu.html'
+					}
 				} else {
 					console.error('Đăng nhập thất bại:', responseData.message);
 					alert('Đăng nhập thất bại: ' + responseData.message);
